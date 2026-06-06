@@ -170,6 +170,118 @@ public class AsignacionAsientosVuelo {
         System.out.println("No se encontraron 2 asientos contiguos disponibles.");
 
     }
+    
+    public static void asignacionAutomatica(int clase) {
+
+     int izquierda = 0;
+     int derecha = 0;
+
+        for (int fila = 0; fila < 20; fila++) {
+
+           for (int columna = 0; columna < 3; columna++) {
+
+                if (cabina[fila][columna] == 'X') {
+                  izquierda++;
+                }
+
+            }
+
+            for (int columna = 3; columna < 6; columna++) {
+
+                if (cabina[fila][columna] == 'X') {
+                 derecha++;
+                }
+
+            }
+
+        }
+
+        int filaInicio;
+        int filaFin;
+        int precio;
+
+        if (clase == 1) {
+
+           filaInicio = 0;
+           filaFin = 4;
+           precio = 150;
+
+        } else {
+
+          filaInicio = 5;
+          filaFin = 19;
+          precio = 50;
+
+        }
+
+        boolean buscarIzquierda;
+
+        if (izquierda < derecha) {
+
+         buscarIzquierda = true;
+
+        } else if (derecha < izquierda) {
+
+         buscarIzquierda = false;
+
+        } else {
+
+         System.out.println("Ambos lados se encuentran balanceados.");
+         buscarIzquierda = true;
+
+        }
+
+        if (buscarIzquierda) {
+
+            for (int fila = filaInicio; fila <= filaFin; fila++) {
+
+                for (int columna = 0; columna < 3; columna++) {
+
+                    if (cabina[fila][columna] == 'L') {
+
+                      cabina[fila][columna] = 'X';
+
+                      char letra = (char) ('A' + columna);
+
+                      System.out.println("Se le ha asignado el asiento "
+                            + letra + (fila + 1));
+                      System.out.println("Total a pagar: $" + precio);
+
+                      return;
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            for (int fila = filaInicio; fila <= filaFin; fila++) {
+
+                for (int columna = 3; columna < 6; columna++) {
+
+                    if (cabina[fila][columna] == 'L') {
+
+                      cabina[fila][columna] = 'X';
+
+                      char letra = (char) ('A' + columna);
+
+                      System.out.println("Se le ha asignado el asiento "
+                            + letra + (fila + 1));
+                      System.out.println("Total a pagar: $" + precio);
+
+                      return;
+                    }
+
+                }
+
+            }
+
+        }
+
+        System.out.println("No hay asientos disponibles en la clase seleccionada.");
+
+    }
 
     public static void ocuparAsiento(char letra, int numeroFila) {
 
@@ -278,7 +390,14 @@ public class AsignacionAsientosVuelo {
 
                 case 3:
 
-                  System.out.println("Funcion pendiente.");
+                   System.out.println("En que clase desea buscar el asiento?");
+                   System.out.println("1. Primera Clase (Filas 1 a 5)");
+                   System.out.println("2. Clase Economica (Filas 6 a 20)");
+                   System.out.print("Seleccione: ");
+
+                   int claseAuto = teclado.nextInt();
+
+                   asignacionAutomatica(claseAuto);
 
                 break;
 
