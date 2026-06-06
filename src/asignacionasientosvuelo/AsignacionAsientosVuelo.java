@@ -339,6 +339,44 @@ public class AsignacionAsientosVuelo {
 
         }
     }
+    
+    public static void reporteVuelo() {
+
+       int ocupados = 0;
+       int libres = 0;
+       int bloqueados = 0;
+
+        for (int fila = 0; fila < 20; fila++) {
+
+            for (int columna = 0; columna < 6; columna++) {
+
+                if (cabina[fila][columna] == 'X') {
+
+                 ocupados++;
+
+                } else if (cabina[fila][columna] == 'L') {
+
+                  libres++;
+
+                }else if (cabina[fila][columna] == 'B') {
+
+                  bloqueados++;
+
+                }
+
+            }
+
+        }
+
+        double porcentaje = (ocupados * 100.0) / 120;
+
+        System.out.println("\n--- REPORTE DE VUELO ---");
+        System.out.println("Asientos ocupados: " + ocupados);
+        System.out.println("Asientos libres: " + libres);
+        System.out.println("Asientos bloqueados: " + bloqueados);
+        System.out.printf("Porcentaje de ocupacion: %.2f%%\n", porcentaje);
+        
+    }
 
     public static void main(String[] args) {
 
@@ -409,7 +447,7 @@ public class AsignacionAsientosVuelo {
 
                 case 5:
 
-                  System.out.println("Funcion pendiente.");
+                  reporteVuelo();
 
                 break;
 
