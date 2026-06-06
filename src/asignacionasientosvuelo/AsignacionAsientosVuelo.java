@@ -154,28 +154,76 @@ public class AsignacionAsientosVuelo {
 
     public static void main(String[] args) {
 
-        inicializarCabina(cabina);
+      inicializarCabina(cabina);
 
-        Scanner teclado = new Scanner(System.in);
+      Scanner teclado = new Scanner(System.in);
 
-        char continuar;
+      int opcion;
 
-        do {
+      do {
 
-            System.out.print("Ingrese la columna (A-F): ");
-            char letra = teclado.next().charAt(0);
+          System.out.println("\n--- AERO-USAC: SISTEMA DE ABORDAJE ---");
+          System.out.println("1. Venta de Boleto Individual");
+          System.out.println("2. Buscar Boletos Contiguos");
+          System.out.println("3. Asignacion Automatica");
+          System.out.println("4. Mostrar Mapa de la Cabina");
+          System.out.println("5. Reporte de Vuelo");
+          System.out.println("6. Salir");
+          System.out.print("Seleccione una opcion: ");
 
-            System.out.print("Ingrese la fila (1-20): ");
-            int numeroFila = teclado.nextInt();
+          opcion = teclado.nextInt();
 
-            ocuparAsiento(letra, numeroFila);
+            switch (opcion) {
 
-            mostrarCabina(cabina);
+               case 1:
 
-            System.out.print("Desea reservar otro asiento? (S/N): ");
-            continuar = teclado.next().toUpperCase().charAt(0);
+                  System.out.print("Ingrese la columna (A-F): ");
+                  char letra = teclado.next().charAt(0);
 
-        } while (continuar == 'S');
+                  System.out.print("Ingrese la fila (1-20): ");
+                  int numeroFila = teclado.nextInt();
+
+                  ocuparAsiento(letra, numeroFila);
+
+                break;
+
+                case 2:
+
+                  System.out.println("Funcion pendiente.");
+
+                break;
+
+                case 3:
+
+                  System.out.println("Funcion pendiente.");
+
+                break;
+
+                case 4:
+
+                  mostrarCabina(cabina);
+
+                break;
+
+                case 5:
+
+                  System.out.println("Funcion pendiente.");
+
+                break;
+
+                case 6:
+
+                  System.out.println("Saliendo del sistema...");
+
+                break;
+
+                default:
+
+                  System.out.println("Opcion invalida.");
+
+            }
+
+        } while (opcion != 6);
 
     }
 }
