@@ -78,26 +78,34 @@ public class AsignacionAsientosVuelo {
 
     public static void ocuparAsiento(char letra, int numeroFila) {
 
-        int fila = obtenerFila(numeroFila);
-        int columna = obtenerColumna(letra);
+      int columna = obtenerColumna(letra);
 
-        if (fila < 0 || fila >= 20 || columna == -1) {
+      if (columna == -1) {
 
-            System.out.println("Asiento invalido.");
-            return;
+        System.out.println("Error: columna invalida.");
+        return;
 
-        }
+      }
 
-        if (cabina[fila][columna] == 'L') {
+      if (numeroFila < 1 || numeroFila > 20) {
 
-            cabina[fila][columna] = 'X';
-            System.out.println("Asiento reservado correctamente.");
+        System.out.println("Error: fila invalida.");
+        return;
 
-        } else {
+      }
 
-            System.out.println("El asiento ya esta ocupado.");
+      int fila = obtenerFila(numeroFila);
 
-        }
+      if (cabina[fila][columna] == 'L') {
+
+        cabina[fila][columna] = 'X';
+        System.out.println("Asiento reservado correctamente.");
+
+      } else {
+
+        System.out.println("El asiento ya esta ocupado.");
+
+      }
     }
 
     public static void main(String[] args) {
