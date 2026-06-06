@@ -1,5 +1,7 @@
 package asignacionasientosvuelo;
 
+import java.util.Scanner;
+
 public class AsignacionAsientosVuelo {
 
     static char[][] cabina = new char[20][6];
@@ -71,7 +73,15 @@ public class AsignacionAsientosVuelo {
 
       inicializarCabina(cabina);
 
-      ocuparAsiento('C', 15);
+      Scanner teclado = new Scanner(System.in);
+
+      System.out.print("Ingrese la columna (A-F): ");
+      char letra = teclado.next().charAt(0);
+
+      System.out.print("Ingrese la fila (1-20): ");
+      int numeroFila = teclado.nextInt();
+
+      ocuparAsiento(letra, numeroFila);
 
       mostrarCabina(cabina);
 
