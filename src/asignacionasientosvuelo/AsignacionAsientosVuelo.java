@@ -69,23 +69,26 @@ public class AsignacionAsientosVuelo {
 
     public static void main(String[] args) {
 
-        inicializarCabina(cabina);
-        
-        char letra = 'C';
-        int numeroFila = 15;
+      inicializarCabina(cabina);
 
-        int fila = obtenerFila(numeroFila);
-        int columna = obtenerColumna(letra);
-        
-        cabina[fila][columna] = 'X';
-        
-        mostrarCabina(cabina);
+      ocuparAsiento('C', 15);
+
+      mostrarCabina(cabina);
 
     }
     
     public static int obtenerFila(int numeroFila) {
 
     return numeroFila - 1;
+
+}
+
+    public static void ocuparAsiento(char letra, int numeroFila) {
+
+    int fila = obtenerFila(numeroFila);
+    int columna = obtenerColumna(letra);
+
+    cabina[fila][columna] = 'X';
 
     }
 }
