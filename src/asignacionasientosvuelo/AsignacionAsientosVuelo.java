@@ -345,6 +345,10 @@ public class AsignacionAsientosVuelo {
        int ocupados = 0;
        int libres = 0;
        int bloqueados = 0;
+       int ingresos = 0;
+       
+       int izquierda = 0;
+       int derecha = 0;
 
         for (int fila = 0; fila < 20; fila++) {
 
@@ -353,7 +357,19 @@ public class AsignacionAsientosVuelo {
                 if (cabina[fila][columna] == 'X') {
 
                  ocupados++;
-
+                 
+                    if (fila < 5) {
+                     ingresos += 150;
+                    }else {
+                       ingresos += 50;
+                    }
+                    
+                    if (columna < 3) {
+                        izquierda++;
+                    } else {
+                        derecha++;
+                    }
+ 
                 } else if (cabina[fila][columna] == 'L') {
 
                   libres++;
@@ -375,6 +391,22 @@ public class AsignacionAsientosVuelo {
         System.out.println("Asientos libres: " + libres);
         System.out.println("Asientos bloqueados: " + bloqueados);
         System.out.printf("Porcentaje de ocupacion: %.2f%%\n", porcentaje);
+        
+        double porcentajeIzquierda = 0;
+        double porcentajeDerecha = 0;
+
+        if (ocupados > 0) {
+
+          porcentajeIzquierda = (izquierda * 100.0) / ocupados;
+          porcentajeDerecha = (derecha * 100.0) / ocupados;
+        }
+        System.out.println("Ingresos recaudados: $" + ingresos);
+
+        System.out.printf("Ocupacion lado izquierdo: %.2f%%\n",
+        porcentajeIzquierda);
+
+        System.out.printf("Ocupacion lado derecho: %.2f%%\n",
+        porcentajeDerecha);
         
     }
 
