@@ -94,6 +94,82 @@ public class AsignacionAsientosVuelo {
 
         return true;
     }
+    
+    public static void buscarBoletosContiguos(int clase) {
+
+      int filaInicio;
+      int filaFin;
+      int precio;
+
+        if (clase == 1) {
+
+          filaInicio = 0;
+          filaFin = 4;
+          precio = 150;
+
+        } else {
+
+          filaInicio = 5;
+          filaFin = 19;
+          precio = 50;
+
+        }
+
+        for (int fila = filaInicio; fila <= filaFin; fila++) {
+
+            if (cabina[fila][0] == 'L' && cabina[fila][1] == 'L') {
+
+              cabina[fila][0] = 'X';
+              cabina[fila][1] = 'X';
+
+              System.out.println("Asientos contiguos asignados: A" + (fila + 1)
+                    + " y B" + (fila + 1));
+              System.out.println("Total a pagar: $" + (precio * 2));
+              return;
+
+            }
+
+            if (cabina[fila][1] == 'L' && cabina[fila][2] == 'L') {
+
+              cabina[fila][1] = 'X';
+              cabina[fila][2] = 'X';
+
+              System.out.println("Asientos contiguos asignados: B" + (fila + 1)
+                    + " y C" + (fila + 1));
+              System.out.println("Total a pagar: $" + (precio * 2));
+              return;
+
+            }
+
+            if (cabina[fila][3] == 'L' && cabina[fila][4] == 'L') {
+
+               cabina[fila][3] = 'X';
+               cabina[fila][4] = 'X';
+
+               System.out.println("Asientos contiguos asignados: D" + (fila + 1)
+                    + " y E" + (fila + 1));
+               System.out.println("Total a pagar: $" + (precio * 2));
+               return;
+
+            }
+
+            if (cabina[fila][4] == 'L' && cabina[fila][5] == 'L') {
+
+               cabina[fila][4] = 'X';
+               cabina[fila][5] = 'X';
+
+               System.out.println("Asientos contiguos asignados: E" + (fila + 1)
+                    + " y F" + (fila + 1));
+               System.out.println("Total a pagar: $" + (precio * 2));
+               return;
+
+            }
+
+        }
+
+        System.out.println("No se encontraron 2 asientos contiguos disponibles.");
+
+    }
 
     public static void ocuparAsiento(char letra, int numeroFila) {
 
@@ -189,7 +265,14 @@ public class AsignacionAsientosVuelo {
 
                 case 2:
 
-                  System.out.println("Funcion pendiente.");
+                  System.out.println("En que clase desea buscar sus asientos?");
+                  System.out.println("1. Primera Clase (Filas 1 a 5)");
+                  System.out.println("2. Clase Economica (Filas 6 a 20)");
+                  System.out.print("Seleccione: ");
+
+                  int clase = teclado.nextInt();
+
+                  buscarBoletosContiguos(clase);
 
                 break;
 
