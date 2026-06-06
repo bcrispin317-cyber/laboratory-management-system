@@ -71,9 +71,15 @@ public class AsignacionAsientosVuelo {
 
         inicializarCabina(cabina);
         mostrarCabina(cabina);
-        System.out.println(obtenerColumna('A'));
-        System.out.println(obtenerColumna('C'));
-        System.out.println(obtenerColumna('F'));
+        
+        System.out.println(obtenerFila(1));
+        System.out.println(obtenerFila(15));
+        System.out.println(obtenerFila(20));
+    }
+    
+    public static int obtenerFila(int numeroFila) {
+
+    return numeroFila - 1;
 
     }
 }
