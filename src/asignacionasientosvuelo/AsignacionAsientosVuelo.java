@@ -18,12 +18,23 @@ public class AsignacionAsientosVuelo {
 
     public static void mostrarCabina(char[][] cabina) {
 
+        System.out.println("ASIGNACION DE ASIENTOS");
+        System.out.println();
+
+        System.out.println("      A B C || D E F");
+        System.out.println();
+
         for (int fila = 0; fila < 20; fila++) {
+
+            System.out.printf("%2d    ", fila + 1);
 
             for (int columna = 0; columna < 6; columna++) {
 
-                System.out.print(cabina[fila][columna] + " ");
+                if (columna == 3) {
+                    System.out.print("|| ");
+                }
 
+                System.out.print(cabina[fila][columna] + " ");
             }
 
             System.out.println();
