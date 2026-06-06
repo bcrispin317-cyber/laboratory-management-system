@@ -70,15 +70,17 @@ public class AsignacionAsientosVuelo {
     public static void main(String[] args) {
 
         inicializarCabina(cabina);
-        mostrarCabina(cabina);
+        
         char letra = 'C';
         int numeroFila = 15;
 
         int fila = obtenerFila(numeroFila);
         int columna = obtenerColumna(letra);
+        
+        cabina[fila][columna] = 'X';
+        
+        mostrarCabina(cabina);
 
-        System.out.println("Fila: " + fila);
-        System.out.println("Columna: " + columna);
     }
     
     public static int obtenerFila(int numeroFila) {
