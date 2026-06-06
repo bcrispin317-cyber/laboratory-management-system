@@ -82,6 +82,19 @@ public class AsignacionAsientosVuelo {
 
     }
 
+    public static boolean puedeReservarVIP(int fila, int columna) {
+
+        if (fila > 0 && cabina[fila - 1][columna] != 'L') {
+            return false;
+        }
+
+        if (fila < 19 && cabina[fila + 1][columna] != 'L') {
+            return false;
+        }
+
+        return true;
+    }
+
     public static void ocuparAsiento(char letra, int numeroFila) {
 
         int columna = obtenerColumna(letra);
@@ -102,31 +115,39 @@ public class AsignacionAsientosVuelo {
 
         int fila = obtenerFila(numeroFila);
 
-        if (cabina[fila][columna] == 'L') {
+        if (cabina[fila][columna] != 'L') {
 
-            cabina[fila][columna] = 'X';
+            System.out.println("El asiento ya esta ocupado.");
+            return;
 
-            if (esVIP(numeroFila)) {
+        }
 
-                System.out.println("Asiento VIP reservado correctamente.");
+        if (esVIP(numeroFila)) {
 
-                if (fila > 0) {
-                    cabina[fila - 1][columna] = 'B';
-                }
+            if (!puedeReservarVIP(fila, columna)) {
 
-                if (fila < 19) {
-                    cabina[fila + 1][columna] = 'B';
-                }
-
-            } else {
-
-                System.out.println("Asiento economico reservado correctamente.");
+                System.out.println("No es posible reservar este asiento VIP.");
+                return;
 
             }
 
+            cabina[fila][columna] = 'X';
+
+            if (fila > 0) {
+                cabina[fila - 1][columna] = 'B';
+            }
+
+            if (fila < 19) {
+                cabina[fila + 1][columna] = 'B';
+            }
+
+            System.out.println("Asiento VIP reservado correctamente.");
+
         } else {
 
-            System.out.println("El asiento ya esta ocupado.");
+            cabina[fila][columna] = 'X';
+
+            System.out.println("Asiento economico reservado correctamente.");
 
         }
     }
