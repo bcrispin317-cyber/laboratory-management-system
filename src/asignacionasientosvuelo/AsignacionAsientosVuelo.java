@@ -108,21 +108,30 @@ public class AsignacionAsientosVuelo {
       }
     }
 
-    public static void main(String[] args) {
+      public static void main(String[] args) {
 
-        inicializarCabina(cabina);
+      inicializarCabina(cabina);
 
-        Scanner teclado = new Scanner(System.in);
+      Scanner teclado = new Scanner(System.in);
 
-        System.out.print("Ingrese la columna (A-F): ");
-        char letra = teclado.next().charAt(0);
+      char continuar;
 
-        System.out.print("Ingrese la fila (1-20): ");
-        int numeroFila = teclado.nextInt();
+      do {
 
-        ocuparAsiento(letra, numeroFila);
+          System.out.print("Ingrese la columna (A-F): ");
+          char letra = teclado.next().charAt(0);
 
-        mostrarCabina(cabina);
+          System.out.print("Ingrese la fila (1-20): ");
+          int numeroFila = teclado.nextInt();
+
+          ocuparAsiento(letra, numeroFila);
+
+          mostrarCabina(cabina);
+
+          System.out.print("¿Desea reservar otro asiento? (S/N): ");
+          continuar = teclado.next().toUpperCase().charAt(0);
+
+        } while (continuar == 'S');
 
     }
 }
