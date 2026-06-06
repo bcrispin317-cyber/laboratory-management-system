@@ -76,60 +76,75 @@ public class AsignacionAsientosVuelo {
 
     }
 
+    public static boolean esVIP(int numeroFila) {
+
+        return numeroFila >= 1 && numeroFila <= 5;
+
+    }
+
     public static void ocuparAsiento(char letra, int numeroFila) {
 
       int columna = obtenerColumna(letra);
 
-      if (columna == -1) {
+        if (columna == -1) {
 
-        System.out.println("Error: columna invalida.");
-        return;
+         System.out.println("Error: columna invalida.");
+         return;
 
-      }
+        }
 
-      if (numeroFila < 1 || numeroFila > 20) {
+        if (numeroFila < 1 || numeroFila > 20) {
 
-        System.out.println("Error: fila invalida.");
-        return;
+          System.out.println("Error: fila invalida.");
+          return;
 
-      }
+        }
 
-      int fila = obtenerFila(numeroFila);
+        int fila = obtenerFila(numeroFila);
 
-      if (cabina[fila][columna] == 'L') {
+        if (cabina[fila][columna] == 'L') {
 
-        cabina[fila][columna] = 'X';
-        System.out.println("Asiento reservado correctamente.");
+          cabina[fila][columna] = 'X';
 
-      } else {
+            if (esVIP(numeroFila)) {
 
-        System.out.println("El asiento ya esta ocupado.");
+             System.out.println("Asiento VIP reservado correctamente.");
 
-      }
-    }
+            } else {
 
-      public static void main(String[] args) {
+              System.out.println("Asiento economico reservado correctamente.");
 
-      inicializarCabina(cabina);
+            }
 
-      Scanner teclado = new Scanner(System.in);
+            } else {
 
-      char continuar;
+              System.out.println("El asiento ya esta ocupado.");
 
-      do {
+            }
+}
 
-          System.out.print("Ingrese la columna (A-F): ");
-          char letra = teclado.next().charAt(0);
+    public static void main(String[] args) {
 
-          System.out.print("Ingrese la fila (1-20): ");
-          int numeroFila = teclado.nextInt();
+        inicializarCabina(cabina);
 
-          ocuparAsiento(letra, numeroFila);
+        Scanner teclado = new Scanner(System.in);
 
-          mostrarCabina(cabina);
+        char continuar;
 
-          System.out.print("¿Desea reservar otro asiento? (S/N): ");
-          continuar = teclado.next().toUpperCase().charAt(0);
+        do {
+
+            System.out.print("Ingrese la columna (A-F): ");
+            char letra = teclado.next().charAt(0);
+
+            System.out.print("Ingrese la fila (1-20): ");
+            int numeroFila = teclado.nextInt();
+
+            ocuparAsiento(letra, numeroFila);
+
+            mostrarCabina(cabina);
+
+            System.out.print("Desea reservar otro asiento? (S/N): ");
+            continuar = teclado.next().toUpperCase().charAt(0);
 
         } while (continuar == 'S');
 
