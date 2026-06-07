@@ -20,7 +20,7 @@ public class AsignacionAsientosVuelo {
 
     public static void mostrarCabina(char[][] cabina) {
 
-        System.out.println("ASIGNACION DE ASIENTOS");
+        System.out.println("  - ASIGNACION DE ASIENTOS - ");
         System.out.println();
 
         System.out.println("      A B C || D E F");
@@ -266,7 +266,7 @@ public class AsignacionAsientosVuelo {
 
                       char letra = (char) ('A' + columna);
 
-                      System.out.println("Se le ha asignado el asiento "
+                      System.out.println(" - Asiento asignado automaticamente con exito -  "
                             + letra + (fila + 1));
                       System.out.println("Total a pagar: $" + precio);
 
@@ -289,14 +289,14 @@ public class AsignacionAsientosVuelo {
 
         if (columna == -1) {
 
-            System.out.println("Error: columna invalida.");
+            System.out.println("Error: la columna ingresada no existe.");
             return;
 
         }
 
         if (numeroFila < 1 || numeroFila > 20) {
 
-            System.out.println("Error: fila invalida.");
+            System.out.println("Error: la fila ingresada esta fuera de rango.");
             return;
 
         }
@@ -305,7 +305,7 @@ public class AsignacionAsientosVuelo {
 
         if (cabina[fila][columna] != 'L') {
 
-            System.out.println("El asiento ya esta ocupado.");
+            System.out.println("El asiento seleccionado no esta disponible.");
             return;
 
         }
@@ -329,13 +329,13 @@ public class AsignacionAsientosVuelo {
                 cabina[fila + 1][columna] = 'B';
             }
 
-            System.out.println("Asiento VIP reservado correctamente.");
+            System.out.println(" - Reserva realizada exitosamente en VIP -");
 
         } else {
 
             cabina[fila][columna] = 'X';
 
-            System.out.println("Asiento economico reservado correctamente.");
+            System.out.println(" - Reserva realizada exitosamente en Clase Economica -");
 
         }
     }
@@ -386,7 +386,8 @@ public class AsignacionAsientosVuelo {
 
         double porcentaje = (ocupados * 100.0) / 120;
 
-        System.out.println("\n--- REPORTE DE VUELO ---");
+        System.out.println("\n           - REPORTE DE VUELO -            ");
+        System.out.println("_____________________________________________");
         System.out.println("Asientos ocupados: " + ocupados);
         System.out.println("Asientos libres: " + libres);
         System.out.println("Asientos bloqueados: " + bloqueados);
@@ -407,6 +408,7 @@ public class AsignacionAsientosVuelo {
 
         System.out.printf("Ocupacion lado derecho: %.2f%%\n",
         porcentajeDerecha);
+        System.out.println("_________________________________________________");
         
     }
 
@@ -420,13 +422,15 @@ public class AsignacionAsientosVuelo {
 
       do {
 
-          System.out.println("\n--- AERO-USAC: SISTEMA DE ABORDAJE ---");
+          System.out.println("\n_____ AERO-USAC: SISTEMA DE ABORDAJE ________");
+          System.out.println("_____________________________________________");
           System.out.println("1. Venta de Boleto Individual");
           System.out.println("2. Buscar Boletos Contiguos");
           System.out.println("3. Asignacion Automatica");
           System.out.println("4. Mostrar Mapa de la Cabina");
           System.out.println("5. Reporte de Vuelo");
           System.out.println("6. Salir");
+          System.out.println("_____________________________________________");
           System.out.print("Seleccione una opcion: ");
 
           opcion = teclado.nextInt();
@@ -446,10 +450,13 @@ public class AsignacionAsientosVuelo {
                 break;
 
                 case 2:
-
+                    
+                  System.out.println("_____________________________________________");
                   System.out.println("En que clase desea buscar sus asientos?");
+                  
                   System.out.println("1. Primera Clase (Filas 1 a 5)");
                   System.out.println("2. Clase Economica (Filas 6 a 20)");
+                  System.out.println("_____________________________________________");
                   System.out.print("Seleccione: ");
 
                   int clase = teclado.nextInt();
@@ -459,10 +466,13 @@ public class AsignacionAsientosVuelo {
                 break;
 
                 case 3:
-
+                    
+                   System.out.println("____________________________________________");
                    System.out.println("En que clase desea buscar el asiento?");
+                   
                    System.out.println("1. Primera Clase (Filas 1 a 5)");
                    System.out.println("2. Clase Economica (Filas 6 a 20)");
+                   System.out.println("_____________________________________________");
                    System.out.print("Seleccione: ");
 
                    int claseAuto = teclado.nextInt();
@@ -484,8 +494,9 @@ public class AsignacionAsientosVuelo {
                 break;
 
                 case 6:
-
-                  System.out.println("Saliendo del sistema...");
+                    
+                  System.out.println("\nGracias por utilizar AERO-USAC.");
+                  System.out.println("Sesion finalizada correctamente.");
 
                 break;
 
