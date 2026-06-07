@@ -226,7 +226,7 @@ public class AsignacionAsientosVuelo {
 
         } else {
 
-         System.out.println("Ambos lados se encuentran balanceados.");
+         System.out.println("   - Ambos lados se encuentran balanceados -  ");
          buscarIzquierda = true;
 
         }
@@ -266,7 +266,7 @@ public class AsignacionAsientosVuelo {
 
                       char letra = (char) ('A' + columna);
 
-                      System.out.println(" - Asiento asignado automaticamente con exito -  "
+                      System.out.println(" - Asiento asignado automaticamente con exito:  "
                             + letra + (fila + 1));
                       System.out.println("Total a pagar: $" + precio);
 
@@ -289,15 +289,15 @@ public class AsignacionAsientosVuelo {
 
         if (columna == -1) {
 
-            System.out.println("Error: la columna ingresada no existe.");
-            return;
+          System.out.println("Error: la columna ingresada no existe.");
+          return;
 
         }
 
         if (numeroFila < 1 || numeroFila > 20) {
 
-            System.out.println("Error: la fila ingresada esta fuera de rango.");
-            return;
+          System.out.println("Error: la fila ingresada esta fuera de rango.");
+          return;
 
         }
 
@@ -305,8 +305,8 @@ public class AsignacionAsientosVuelo {
 
         if (cabina[fila][columna] != 'L') {
 
-            System.out.println("El asiento seleccionado no esta disponible.");
-            return;
+          System.out.println("El asiento seleccionado no esta disponible.");
+          return;
 
         }
 
@@ -314,28 +314,36 @@ public class AsignacionAsientosVuelo {
 
             if (!puedeReservarVIP(fila, columna)) {
 
-                System.out.println("No es posible reservar este asiento VIP.");
-                return;
+               System.out.println("No es posible reservar este asiento VIP.");
+               return;
 
             }
 
             cabina[fila][columna] = 'X';
 
             if (fila > 0) {
-                cabina[fila - 1][columna] = 'B';
+              cabina[fila - 1][columna] = 'B';
             }
 
             if (fila < 19) {
-                cabina[fila + 1][columna] = 'B';
+              cabina[fila + 1][columna] = 'B';
             }
 
-            System.out.println(" - Reserva realizada exitosamente en VIP -");
+          System.out.println("___________________________________________");
+          System.out.println("Reserva realizada exitosamente.");
+          System.out.println("Clase: Primera Clase (VIP)");
+          System.out.println("Precio del boleto: $150");
+          System.out.println("__________________________________________");
 
         } else {
 
-            cabina[fila][columna] = 'X';
+           cabina[fila][columna] = 'X';
 
-            System.out.println(" - Reserva realizada exitosamente en Clase Economica -");
+           System.out.println("__________________________________________");
+           System.out.println("Reserva realizada exitosamente.");
+           System.out.println("Clase: Clase Economica");
+           System.out.println("Precio del boleto: $50");
+           System.out.println("__________________________________________");
 
         }
     }
@@ -488,7 +496,6 @@ public class AsignacionAsientosVuelo {
                 break;
 
                 case 5:
-
                   reporteVuelo();
 
                 break;
