@@ -130,27 +130,17 @@ Estados de los asientos:
 
 ### Menú Principal
 
-![Menú Principal](imagenes/menu_principal.png)
+![Menú Principal](./imagenes/menu_principal.png)
 
-### Venta de Boleto Individual
+![Venta de Boleto Individual](./imagenes/venta_boleto.png)
 
-![Venta de Boleto Individual](imagenes/venta_boleto.png)
+![Boletos Contiguos](./imagenes/boletos_contiguos.png)
 
-### Búsqueda de Boletos Contiguos
+![Asignación Automática](./imagenes/asignacion_automatica.png)
 
-![Boletos Contiguos](imagenes/boletos_contiguos.png)
+![Mapa de la Cabina](./imagenes/mapa_cabina.png)
 
-### Asignación Automática
-
-![Asignación Automática](imagenes/asignacion_automatica.png)
-
-### Mapa de la Cabina
-
-![Mapa de la Cabina](imagenes/mapa_cabina.png)
-
-### Reporte de Vuelo
-
-![Reporte de Vuelo](imagenes/reporte_vuelo.png)
+![Reporte de Vuelo](./imagenes/reporte_vuelo.png)
 
 ---
 
