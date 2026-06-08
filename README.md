@@ -118,30 +118,6 @@ Estados de los asientos:
 
 ---
 
-## Capturas del Sistema
-
-### Menú Principal
-
-*(Agregar captura aquí)*
-
-### Venta de Boletos
-
-*(Agregar captura aquí)*
-
-### Búsqueda de Boletos Contiguos
-
-*(Agregar captura aquí)*
-
-### Asignación Automática
-
-*(Agregar captura aquí)*
-
-### Reporte de Vuelo
-
-*(Agregar captura aquí)*
-
----
-
 ## Control de Versiones
 
 El proyecto fue desarrollado utilizando Git y GitHub para facilitar el control de versiones, el seguimiento de cambios y el trabajo colaborativo entre los integrantes del grupo.
