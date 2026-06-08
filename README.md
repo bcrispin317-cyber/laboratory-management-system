@@ -251,7 +251,7 @@ A continuación se presentan capturas de pantalla que evidencian los commits rea
 
 ### Historial de Commits
 
-![Historial de Commits](imagenes/commits_historial.png.png)
+![Commits](imagenes/commits.png.png)
 
 ### Commits Realizados por los Integrantes
 
