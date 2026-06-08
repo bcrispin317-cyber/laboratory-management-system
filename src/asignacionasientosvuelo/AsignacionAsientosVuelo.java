@@ -266,7 +266,7 @@ public class AsignacionAsientosVuelo {
 
                       char letra = (char) ('A' + columna);
 
-                      System.out.println(" - Asiento asignado automaticamente con exito:  "
+                      System.out.println(" - Asiento asignado automáticamente con éxito:  "
                             + letra + (fila + 1));
                       System.out.println("Total a pagar: $" + precio);
 
@@ -341,7 +341,7 @@ public class AsignacionAsientosVuelo {
 
            System.out.println("__________________________________________");
            System.out.println("Reserva realizada exitosamente.");
-           System.out.println("Clase: Clase Economica");
+           System.out.println("Clase: Clase Económica");
            System.out.println("Precio del boleto: $50");
            System.out.println("__________________________________________");
 
@@ -411,10 +411,10 @@ public class AsignacionAsientosVuelo {
         }
         System.out.println("Ingresos recaudados: $" + ingresos);
 
-        System.out.printf("Ocupacion lado izquierdo: %.2f%%\n",
+        System.out.printf("Ocupación lado izquierdo: %.2f%%\n",
         porcentajeIzquierda);
 
-        System.out.printf("Ocupacion lado derecho: %.2f%%\n",
+        System.out.printf("Ocupación lado derecho: %.2f%%\n",
         porcentajeDerecha);
         System.out.println("_________________________________________________");
         
@@ -434,12 +434,12 @@ public class AsignacionAsientosVuelo {
           System.out.println("_____________________________________________");
           System.out.println("1. Venta de Boleto Individual");
           System.out.println("2. Buscar Boletos Contiguos");
-          System.out.println("3. Asignacion Automatica");
+          System.out.println("3. Asignación Automática");
           System.out.println("4. Mostrar Mapa de la Cabina");
           System.out.println("5. Reporte de Vuelo");
           System.out.println("6. Salir");
           System.out.println("_____________________________________________");
-          System.out.print("Seleccione una opcion: ");
+          System.out.print("Seleccione una opción: ");
 
           opcion = teclado.nextInt();
 
@@ -460,7 +460,7 @@ public class AsignacionAsientosVuelo {
                 case 2:
                     
                   System.out.println("_____________________________________________");
-                  System.out.println("¿En que clase desea buscar sus asientos?");
+                  System.out.println("¿En qué clase desea buscar sus asientos?");
                   
                   System.out.println("1. Primera Clase (Filas 1 a 5)");
                   System.out.println("2. Clase Economica (Filas 6 a 20)");
@@ -476,7 +476,7 @@ public class AsignacionAsientosVuelo {
                 case 3:
                     
                    System.out.println("____________________________________________");
-                   System.out.println("¿En que clase desea buscar el asiento?");
+                   System.out.println("¿En qué clase desea buscar el asiento?");
                    
                    System.out.println("1. Primera Clase (Filas 1 a 5)");
                    System.out.println("2. Clase Economica (Filas 6 a 20)");
@@ -503,13 +503,13 @@ public class AsignacionAsientosVuelo {
                 case 6:
                     
                   System.out.println("\nGracias por utilizar AERO-USAC.");
-                  System.out.println("Sesion finalizada correctamente.");
+                  System.out.println("Sesión finalizada correctamente.");
 
                 break;
 
                 default:
 
-                  System.out.println("Opcion inválida.");
+                  System.out.println("Opción inválida.");
 
             }
 
