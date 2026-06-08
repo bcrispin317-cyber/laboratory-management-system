@@ -289,14 +289,14 @@ public class AsignacionAsientosVuelo {
 
         if (columna == -1) {
 
-          System.out.println("Error: la columna ingresada no existe.");
+          System.out.println("Error: la columna ingresada no existe. Ingrese un parámetro válido.");
           return;
 
         }
 
         if (numeroFila < 1 || numeroFila > 20) {
 
-          System.out.println("Error: la fila ingresada esta fuera de rango.");
+          System.out.println("Error: la fila ingresada esta fuera de rango. Ingrese un parámetro válido.");
           return;
 
         }
@@ -314,7 +314,7 @@ public class AsignacionAsientosVuelo {
 
             if (!puedeReservarVIP(fila, columna)) {
 
-               System.out.println("No es posible reservar este asiento VIP.");
+               System.out.println("No es posible reservar este asiento VIP. No está disponible");
                return;
 
             }
