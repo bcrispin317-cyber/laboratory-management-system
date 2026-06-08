@@ -460,7 +460,7 @@ public class AsignacionAsientosVuelo {
                 case 2:
                     
                   System.out.println("_____________________________________________");
-                  System.out.println("En que clase desea buscar sus asientos?");
+                  System.out.println("¿En que clase desea buscar sus asientos?");
                   
                   System.out.println("1. Primera Clase (Filas 1 a 5)");
                   System.out.println("2. Clase Economica (Filas 6 a 20)");
@@ -476,7 +476,7 @@ public class AsignacionAsientosVuelo {
                 case 3:
                     
                    System.out.println("____________________________________________");
-                   System.out.println("En que clase desea buscar el asiento?");
+                   System.out.println("¿En que clase desea buscar el asiento?");
                    
                    System.out.println("1. Primera Clase (Filas 1 a 5)");
                    System.out.println("2. Clase Economica (Filas 6 a 20)");
@@ -509,7 +509,7 @@ public class AsignacionAsientosVuelo {
 
                 default:
 
-                  System.out.println("Opcion invalida.");
+                  System.out.println("Opcion inválida.");
 
             }
 
