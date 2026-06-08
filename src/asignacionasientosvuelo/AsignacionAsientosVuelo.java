@@ -305,7 +305,7 @@ public class AsignacionAsientosVuelo {
 
         if (cabina[fila][columna] != 'L') {
 
-          System.out.println("El asiento seleccionado no esta disponible.");
+          System.out.println("El asiento seleccionado no está disponible.");
           return;
 
         }
@@ -331,7 +331,7 @@ public class AsignacionAsientosVuelo {
 
           System.out.println("___________________________________________");
           System.out.println("Reserva realizada exitosamente.");
-          System.out.println("Clase: Primera Clase (VIP)");
+          System.out.println("Clase: (VIP)");
           System.out.println("Precio del boleto: $150");
           System.out.println("__________________________________________");
 
