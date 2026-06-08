@@ -132,13 +132,23 @@ Estados de los asientos:
 
 ![Menú Principal](./imagenes/menu_principal.png.png)
 
+### Venta de Boleto Individual
+
 ![Venta de Boleto Individual](./imagenes/venta_boleto.png.png)
+
+### Venta de Boletos Contiguos
 
 ![Boletos Contiguos](./imagenes/boletos_contiguos.png.png)
 
+### Asignación Automática
+
 ![Asignación Automática](./imagenes/asignacion_automatica.png.png)
 
+### Mapa de la Cabina
+
 ![Mapa de la Cabina](./imagenes/mapa_cabina.png.png)
+
+### Reporte de Vuelo
 
 ![Reporte de Vuelo](./imagenes/reporte_vuelo.png.png)
 
