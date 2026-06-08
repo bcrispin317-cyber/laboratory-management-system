@@ -1,11 +1,19 @@
 # Sistema de Asignación de Asientos - AERO-USAC
 
-## Integrantes
+## Información Académica
+
+**Universidad de San Carlos de Guatemala**
+**Facultad de Ingeniería**
+**Escuela de Ciencias y Sistemas**
+**Curso:** Introducción a la Programación y Computación 1
+**Laboratorio:** Introducción a la Programación y Computación 1
+**Práctica:** Práctica 1
+**Grupo:** 12
+
+### Integrantes
 
 * Byron Alexander Crispin Guzmán - 202300951
 * Heraldo David Escobar Rosales - 202211057
-
-**Grupo:** 12
 
 ---
 
@@ -118,14 +126,157 @@ Estados de los asientos:
 
 ---
 
+## Capturas del Sistema
+
+### Menú Principal
+
+![Menú Principal](imagenes/menu_principal.png)
+
+### Venta de Boleto Individual
+
+![Venta de Boleto Individual](imagenes/venta_boleto.png)
+
+### Búsqueda de Boletos Contiguos
+
+![Boletos Contiguos](imagenes/boletos_contiguos.png)
+
+### Asignación Automática
+
+![Asignación Automática](imagenes/asignacion_automatica.png)
+
+### Mapa de la Cabina
+
+![Mapa de la Cabina](imagenes/mapa_cabina.png)
+
+### Reporte de Vuelo
+
+![Reporte de Vuelo](imagenes/reporte_vuelo.png)
+
+---
+
+## Fragmentos Relevantes del Código
+
+### Declaración de la Matriz
+
+La cabina se representa mediante una matriz bidimensional de caracteres:
+
+```java
+char[][] cabina = new char[20][6];
+```
+
+Esta estructura permite almacenar y administrar los 120 asientos de la aeronave.
+
+---
+
+### Método para Mostrar la Cabina
+
+La visualización de la cabina se realiza recorriendo completamente la matriz:
+
+```java
+for (int fila = 0; fila < 20; fila++) {
+    for (int columna = 0; columna < 6; columna++) {
+        System.out.print(cabina[fila][columna] + " ");
+    }
+    System.out.println();
+}
+```
+
+Este recorrido permite mostrar el estado actual de cada asiento.
+
+---
+
+### Validación de Asientos
+
+Antes de reservar un asiento, el sistema verifica que se encuentre disponible:
+
+```java
+if (cabina[fila][columna] != 'L') {
+    System.out.println("El asiento seleccionado no está disponible.");
+    return;
+}
+```
+
+Esta validación evita reservaciones duplicadas.
+
+---
+
+### Lógica de la Zona VIP
+
+Las filas VIP poseen reglas especiales para bloquear asientos cercanos y proporcionar mayor comodidad:
+
+```java
+if (esVIP(numeroFila)) {
+
+    cabina[fila][columna] = 'X';
+
+    if (fila > 0) {
+        cabina[fila - 1][columna] = 'B';
+    }
+
+    if (fila < 19) {
+        cabina[fila + 1][columna] = 'B';
+    }
+}
+```
+
+---
+
+### Cálculo del Reporte
+
+El porcentaje de ocupación se calcula mediante la siguiente operación:
+
+```java
+double porcentajeOcupacion =
+        (ocupados * 100.0) / 120;
+```
+
+Con esta información el sistema genera estadísticas de ocupación e ingresos.
+
+---
+
 ## Control de Versiones
 
 El proyecto fue desarrollado utilizando Git y GitHub para facilitar el control de versiones, el seguimiento de cambios y el trabajo colaborativo entre los integrantes del grupo.
+
+Durante el desarrollo se realizaron múltiples commits para registrar avances, correcciones y mejoras implementadas en cada etapa del proyecto.
+
+
+---
+
+## Evidencia de Commits y Trabajo Colaborativo
+
+Durante el desarrollo del proyecto se utilizó Git y GitHub para registrar los avances realizados por los integrantes del grupo. Cada cambio importante fue almacenado mediante commits, permitiendo mantener un historial detallado de modificaciones y facilitar el trabajo colaborativo.
+
+A continuación se presentan capturas de pantalla que evidencian los commits realizados durante el desarrollo del proyecto.
+
+### Historial de Commits
+
+![Historial de Commits](imagenes/commits_historial.png)
+
+### Commits Realizados por los Integrantes
+
+![Commits de Byron](imagenes/commits_byron.png)
+
+![Commits de Heraldo](imagenes/commits_heraldo.png)
+
+### Evidencia de Colaboración en GitHub
+
+![Colaboradores](imagenes/colaboradores_github.png)
+
+Las imágenes anteriores muestran la participación de los integrantes dentro del repositorio y el uso adecuado de herramientas de control de versiones durante el desarrollo de la práctica.
 
 ---
 
 ## Repositorio
 
-https://github.com/bcrispin317-cyber/AsignacionAsientosVuelo
+Repositorio oficial del proyecto:
+
+https://github.com/bcrispin317-cyber/IPC1V_Practica1_G12
+
+---
+
+## Licencia
+
+Proyecto desarrollado con fines académicos para el curso Introducción a la Programación y Computación 1 de la Universidad de San Carlos de Guatemala.
 
 
