@@ -251,17 +251,17 @@ A continuación se presentan capturas de pantalla que evidencian los commits rea
 
 ### Historial de Commits
 
-![Historial de Commits](imagenes/commits_historial.png)
+![Historial de Commits](imagenes/commits_historial.png.png)
 
 ### Commits Realizados por los Integrantes
 
-![Commits de Byron](imagenes/commits_byron.png)
+![Commits de Byron](imagenes/commits_byron.png.png)
 
-![Commits de Heraldo](imagenes/commits_heraldo.png)
+![Commits de Heraldo](imagenes/commits_heraldo.png.png)
 
 ### Evidencia de Colaboración en GitHub
 
-![Colaboradores](imagenes/colaboradores_github.png)
+![Colaboradores](imagenes/colaboradores_github.png.png)
 
 Las imágenes anteriores muestran la participación de los integrantes dentro del repositorio y el uso adecuado de herramientas de control de versiones durante el desarrollo de la práctica.
 
