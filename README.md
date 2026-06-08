@@ -130,17 +130,17 @@ Estados de los asientos:
 
 ### Menú Principal
 
-![Menú Principal](./imagenes/menu_principal.png)
+![Menú Principal](./imagenes/menu_principal.png.png)
 
-![Venta de Boleto Individual](./imagenes/venta_boleto.png)
+![Venta de Boleto Individual](./imagenes/venta_boleto.png.png)
 
-![Boletos Contiguos](./imagenes/boletos_contiguos.png)
+![Boletos Contiguos](./imagenes/boletos_contiguos.png.png)
 
-![Asignación Automática](./imagenes/asignacion_automatica.png)
+![Asignación Automática](./imagenes/asignacion_automatica.png.png)
 
-![Mapa de la Cabina](./imagenes/mapa_cabina.png)
+![Mapa de la Cabina](./imagenes/mapa_cabina.png.png)
 
-![Reporte de Vuelo](./imagenes/reporte_vuelo.png)
+![Reporte de Vuelo](./imagenes/reporte_vuelo.png.png)
 
 ---
 
@@ -262,11 +262,5 @@ Las imágenes anteriores muestran la participación de los integrantes dentro de
 Repositorio oficial del proyecto:
 
 https://github.com/bcrispin317-cyber/IPC1V_Practica1_G12
-
----
-
-## Licencia
-
-Proyecto desarrollado con fines académicos para el curso Introducción a la Programación y Computación 1 de la Universidad de San Carlos de Guatemala.
 
 
