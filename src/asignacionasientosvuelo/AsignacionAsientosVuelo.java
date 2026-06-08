@@ -226,7 +226,7 @@ public class AsignacionAsientosVuelo {
 
         } else {
 
-         System.out.println("   - Ambos lados se encuentran balanceados -  ");
+         System.out.println("   - Ambos lados se encuentran disponibles -  ");
          buscarIzquierda = true;
 
         }
