@@ -257,7 +257,7 @@ A continuación se presentan capturas de pantalla que evidencian los commits rea
 
 ![Commits de Byron](imagenes/commits_byron.png.png)
 
-![Commits de Heraldo](imagenes/commits_heraldo.png.png)
+![Commits de Heraldo](imagenes/commits_heraldo.png.jpeg)
 
 ### Evidencia de Colaboración en GitHub
 
