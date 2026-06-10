@@ -8,7 +8,7 @@
 **Curso:** Introducción a la Programación y Computación 1
 **Laboratorio:** Introducción a la Programación y Computación 1
 **Práctica:** Práctica 1
-**Grupo:** 12
+**Grupo:** 10
 
 ### Integrantes
 
