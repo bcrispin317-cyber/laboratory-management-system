@@ -1,0 +1,4 @@
+codigo,nombre,genero,experimentos,contrasenia
+QI-02,Pablo Fernandez,M,2,IPCQ02
+QI-03,Lucas Tomas,M,5,IPCQ03
+QI-04,Luisa Ceballos,F,7,IPCQ04

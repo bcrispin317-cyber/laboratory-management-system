@@ -8,6 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class PanelInvestigadores extends JPanel {
 
     private JTable tabla;
@@ -60,11 +64,82 @@ public class PanelInvestigadores extends JPanel {
         });
 
         btnCargar.addActionListener((ActionEvent e) -> {
-            cargarTabla();
+
+            JFileChooser selector = new JFileChooser();
+
+            int opcion = selector.showOpenDialog(null);
+
+            if (opcion == JFileChooser.APPROVE_OPTION) {
+
+                try {
+
+                    File archivo = selector.getSelectedFile();
+
+                    BufferedReader lector =
+                            new BufferedReader(new FileReader(archivo));
+
+                    String linea;
+
+                    lector.readLine();
+
+                    while ((linea = lector.readLine()) != null) {
+
+                        String[] datos = linea.split(",");
+
+                        String codigo = datos[0].trim();
+                        String nombre = datos[1].trim();
+                        String genero = datos[2].trim();
+                        int experimentos =
+                                Integer.parseInt(datos[3].trim());
+                        String contrasenia = datos[4].trim();
+
+                        Investigador investigador =
+                                new Investigador(
+                                        codigo,
+                                        nombre,
+                                        genero,
+                                        experimentos,
+                                        contrasenia
+                                );
+
+                        controlador.getSistema()
+                                .getInvestigadores()
+                                .add(investigador);
+                    }
+
+                    lector.close();
+
+                    controlador.guardarDatos();
+
+                    cargarTabla();
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Investigadores cargados correctamente"
+                    );
+
+                } catch (Exception ex) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Error al cargar CSV"
+                    );
+                }
+            }
+        });
+
+        btnActualizar.addActionListener((ActionEvent e) -> {
+            new ActualizarInvestigador();
+        });
+        
+        btnEliminar.addActionListener((ActionEvent e) -> {
+            new EliminarInvestigador();
         });
     }
 
     private void cargarTabla() {
+        
+        controlador = new LaboratorioControlador();
 
         modelo.setRowCount(0);
 
