@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/PanelInvestigadores.java</file>
-            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/modelo/Investigador.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/PanelMuestras.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/ActualizarMuestra.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/EliminarMuestra.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/PanelPatrones.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/modelo/Patron.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/CrearPatron.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/ActualizarPatron.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/EliminarPatron.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/PanelAsignacion.java</file>
+            <file>file:/C:/Users/Byron/OneDrive/Escritorio/IPC1/Proyecto2/Proyecto_2/src/vista/CrearMuestra.java</file>
         </group>
     </open-files>
 </project-private>
