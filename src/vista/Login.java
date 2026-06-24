@@ -3,6 +3,7 @@ package vista;
 import controlador.LaboratorioControlador;
 import modelo.Investigador;
 import vista.VentanaAdministrador;
+import vista.VentanaInvestigador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,8 +66,9 @@ public class Login extends JFrame {
             if (i.getCodigo().equals(codigo)
                     && i.getContrasenia().equals(pass)) {
 
-                JOptionPane.showMessageDialog(this,
-                        "Bienvenido " + i.getNombre());
+                new VentanaInvestigador(i);
+
+                dispose();
 
                 return;
             }
