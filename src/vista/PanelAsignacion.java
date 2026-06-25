@@ -20,25 +20,79 @@ public class PanelAsignacion extends JPanel {
 
         controlador = new LaboratorioControlador();
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
+        Font fuente =
+                new Font("Segoe UI", Font.PLAIN, 15);
 
-        add(new JLabel("Investigador"));
+        Font titulo =
+                new Font("Segoe UI", Font.BOLD, 15);
+
+        setLayout(new FlowLayout(
+                FlowLayout.CENTER,
+                20,
+                30));
+
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        20, 20, 20, 20
+                )
+        );
+
+        JLabel lblInvestigador =
+                new JLabel("Investigador");
+
+        lblInvestigador.setFont(titulo);
+
+        add(lblInvestigador);
 
         comboInvestigadores = new JComboBox<>();
+
+        comboInvestigadores.setFont(fuente);
+
         comboInvestigadores.setPreferredSize(
-                new Dimension(200, 30));
+                new Dimension(230, 35)
+        );
+
         add(comboInvestigadores);
 
-        add(new JLabel("Muestra"));
+        JLabel lblMuestra =
+                new JLabel("Muestra");
+
+        lblMuestra.setFont(titulo);
+
+        add(lblMuestra);
 
         comboMuestras = new JComboBox<>();
+
+        comboMuestras.setFont(fuente);
+
         comboMuestras.setPreferredSize(
-                new Dimension(200, 30));
+                new Dimension(230, 35)
+        );
+
         add(comboMuestras);
 
         btnAsignar = new JButton("Asignar");
+
+        btnAsignar.setFont(
+                new Font("Segoe UI",
+                        Font.BOLD,
+                        15)
+        );
+
+        btnAsignar.setBackground(
+                new Color(52, 152, 219)
+        );
+
+        btnAsignar.setForeground(
+                Color.WHITE
+        );
+
+        btnAsignar.setFocusPainted(false);
+
         btnAsignar.setPreferredSize(
-                new Dimension(150, 40));
+                new Dimension(170, 45)
+        );
+
         add(btnAsignar);
 
         cargarInvestigadores();
@@ -136,6 +190,12 @@ public class PanelAsignacion extends JPanel {
                 "Experimento asignado correctamente."
         );
 
+        cargarMuestras();
+    }
+
+    public void actualizar() {
+
+        cargarInvestigadores();
         cargarMuestras();
     }
 }

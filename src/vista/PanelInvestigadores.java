@@ -4,6 +4,7 @@ import controlador.LaboratorioControlador;
 import modelo.Investigador;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,12 @@ public class PanelInvestigadores extends JPanel {
 
         setLayout(new BorderLayout());
 
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        10, 10, 10, 10
+                )
+        );
+
         modelo = new DefaultTableModel();
 
         modelo.addColumn("Código");
@@ -39,15 +46,71 @@ public class PanelInvestigadores extends JPanel {
 
         tabla = new JTable(modelo);
 
+        tabla.setRowHeight(28);
+
+        tabla.setFont(
+                new Font("Segoe UI", Font.PLAIN, 13)
+        );
+
+        tabla.getTableHeader().setFont(
+                new Font("Segoe UI", Font.BOLD, 14)
+        );
+
+        DefaultTableCellRenderer centro =
+                new DefaultTableCellRenderer();
+
+        centro.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+
+            tabla.getColumnModel()
+                    .getColumn(i)
+                    .setCellRenderer(centro);
+        }
+
         JScrollPane scroll = new JScrollPane(tabla);
 
         JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 1, 10, 10));
+
+        panelBotones.setLayout(
+                new GridLayout(4, 1, 10, 10)
+        );
+
+        Font fuenteBoton =
+                new Font("Segoe UI", Font.BOLD, 14);
 
         btnCrear = new JButton("Crear");
         btnCargar = new JButton("Cargar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
+
+        btnCrear.setFont(fuenteBoton);
+        btnCargar.setFont(fuenteBoton);
+        btnActualizar.setFont(fuenteBoton);
+        btnEliminar.setFont(fuenteBoton);
+
+        btnCrear.setBackground(
+                new Color(46, 204, 113));
+        btnCrear.setForeground(Color.WHITE);
+
+        btnCargar.setBackground(
+                new Color(52, 152, 219));
+        btnCargar.setForeground(Color.WHITE);
+
+        btnActualizar.setBackground(
+                new Color(241, 196, 15));
+        btnActualizar.setForeground(Color.BLACK);
+
+        btnEliminar.setBackground(
+                new Color(231, 76, 60));
+        btnEliminar.setForeground(Color.WHITE);
+
+        btnCrear.setFocusPainted(false);
+        btnCargar.setFocusPainted(false);
+        btnActualizar.setFocusPainted(false);
+        btnEliminar.setFocusPainted(false);
 
         panelBotones.add(btnCrear);
         panelBotones.add(btnCargar);
@@ -60,7 +123,10 @@ public class PanelInvestigadores extends JPanel {
         cargarTabla();
 
         btnCrear.addActionListener((ActionEvent e) -> {
+
             new CrearInvestigador();
+
+            cargarTabla();
         });
 
         btnCargar.addActionListener((ActionEvent e) -> {
@@ -76,7 +142,8 @@ public class PanelInvestigadores extends JPanel {
                     File archivo = selector.getSelectedFile();
 
                     BufferedReader lector =
-                            new BufferedReader(new FileReader(archivo));
+                            new BufferedReader(
+                                    new FileReader(archivo));
 
                     String linea;
 
@@ -89,9 +156,13 @@ public class PanelInvestigadores extends JPanel {
                         String codigo = datos[0].trim();
                         String nombre = datos[1].trim();
                         String genero = datos[2].trim();
+
                         int experimentos =
-                                Integer.parseInt(datos[3].trim());
-                        String contrasenia = datos[4].trim();
+                                Integer.parseInt(
+                                        datos[3].trim());
+
+                        String contrasenia =
+                                datos[4].trim();
 
                         Investigador investigador =
                                 new Investigador(
@@ -129,16 +200,27 @@ public class PanelInvestigadores extends JPanel {
         });
 
         btnActualizar.addActionListener((ActionEvent e) -> {
+
             new ActualizarInvestigador();
+
+            cargarTabla();
         });
-        
+
         btnEliminar.addActionListener((ActionEvent e) -> {
+
             new EliminarInvestigador();
+
+            cargarTabla();
         });
     }
 
+    public void actualizar() {
+
+        cargarTabla();
+    }
+
     private void cargarTabla() {
-        
+
         controlador = new LaboratorioControlador();
 
         modelo.setRowCount(0);
@@ -147,10 +229,10 @@ public class PanelInvestigadores extends JPanel {
                 controlador.getSistema().getInvestigadores()) {
 
             modelo.addRow(new Object[]{
-                investigador.getCodigo(),
-                investigador.getNombre(),
-                investigador.getGenero(),
-                investigador.getExperimentos()
+                    investigador.getCodigo(),
+                    investigador.getNombre(),
+                    investigador.getGenero(),
+                    investigador.getExperimentos()
             });
         }
     }

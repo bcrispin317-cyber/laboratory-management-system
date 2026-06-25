@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.PrintWriter;
 import java.awt.Desktop;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class PanelPatrones extends JPanel {
 
@@ -31,6 +32,12 @@ public class PanelPatrones extends JPanel {
         controlador = new LaboratorioControlador();
 
         setLayout(new BorderLayout());
+        
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        10, 10, 10, 10
+                )
+        );
 
         modelo = new DefaultTableModel();
 
@@ -38,10 +45,39 @@ public class PanelPatrones extends JPanel {
         modelo.addColumn("Nombre");
         modelo.addColumn("Acciones");
 
-        tabla = new JTable(modelo);
+       tabla = new JTable(modelo);
+
         tabla.setDefaultEditor(Object.class, null);
 
+        tabla.setRowHeight(28);
+
+        tabla.setFont(
+                new Font("Segoe UI", Font.PLAIN, 13)
+        );
+
+        tabla.getTableHeader().setFont(
+                new Font("Segoe UI", Font.BOLD, 14)
+        );
+
+        DefaultTableCellRenderer centro =
+                new DefaultTableCellRenderer();
+
+        centro.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+
+            tabla.getColumnModel()
+                    .getColumn(i)
+                    .setCellRenderer(centro);
+        }
+
         JScrollPane scroll = new JScrollPane(tabla);
+        
+        tabla.getColumnModel()
+                .getColumn(2)
+                .setPreferredWidth(90);
 
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new GridLayout(4, 1, 10, 10));
@@ -50,6 +86,36 @@ public class PanelPatrones extends JPanel {
         btnCargar = new JButton("Cargar");
         btnVer = new JButton("Ver");
         btnEliminar = new JButton("Eliminar");
+        
+        Font fuenteBoton =
+                new Font("Segoe UI", Font.BOLD, 14);
+
+        btnCrear.setFont(fuenteBoton);
+        btnCargar.setFont(fuenteBoton);
+        btnVer.setFont(fuenteBoton);
+        btnEliminar.setFont(fuenteBoton);
+
+        btnCrear.setBackground(
+                new Color(46,204,113));
+        btnCrear.setForeground(Color.WHITE);
+
+        btnCargar.setBackground(
+                new Color(52,152,219));
+        btnCargar.setForeground(Color.WHITE);
+
+        btnVer.setBackground(
+                new Color(155,89,182));
+        btnVer.setForeground(Color.WHITE);
+
+        btnEliminar.setBackground(
+                new Color(231,76,60));
+        btnEliminar.setForeground(Color.WHITE);
+
+        btnCrear.setFocusPainted(false);
+        btnCargar.setFocusPainted(false);
+        btnVer.setFocusPainted(false);
+        btnEliminar.setFocusPainted(false);
+        
 
         panelBotones.add(btnCrear);
         panelBotones.add(btnCargar);
@@ -62,7 +128,10 @@ public class PanelPatrones extends JPanel {
         cargarTabla();
 
         btnCrear.addActionListener(e -> {
+
             new CrearPatron();
+
+            cargarTabla();
         });
 
         btnCargar.addActionListener(e -> {
@@ -92,6 +161,23 @@ public class PanelPatrones extends JPanel {
                         String codigo = datos[0].trim();
                         String nombre = datos[1].trim();
                         String patronTexto = datos[2].trim();
+
+                        boolean existe = false;
+
+                        for (Patron p :
+                                controlador.getSistema().getPatrones()) {
+
+                            if (p.getCodigo().equals(codigo)) {
+
+                                existe = true;
+                                break;
+                            }
+                        }
+
+                        if (existe) {
+
+                            continue;
+                        }
 
                         int[][] matriz =
                                 convertirPatron(patronTexto);
@@ -129,7 +215,10 @@ public class PanelPatrones extends JPanel {
         });
 
         btnEliminar.addActionListener(e -> {
+
             new EliminarPatron();
+
+            cargarTabla();
         });
         
         btnVer.addActionListener(e -> {
@@ -269,5 +358,11 @@ public class PanelPatrones extends JPanel {
 
         return matriz;
     }
+    
+    public void actualizar() {
+
+        cargarTabla();
+    }
+    
     
 }

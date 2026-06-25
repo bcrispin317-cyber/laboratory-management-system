@@ -405,6 +405,5 @@ public class PanelAnalisis extends JPanel {
                 );
             }
         }
-    }
-    
+    }  
 }

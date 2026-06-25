@@ -70,7 +70,19 @@ public class ActualizarInvestigador extends JFrame {
 
     private void buscar() {
 
-        String codigo = txtCodigo.getText();
+        controlador = new LaboratorioControlador();
+
+        String codigo = txtCodigo.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un código."
+            );
+
+            return;
+        }
 
         for (Investigador i :
                 controlador.getSistema().getInvestigadores()) {
@@ -89,7 +101,7 @@ public class ActualizarInvestigador extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Investigador no encontrado"
+                "Investigador no encontrado."
         );
     }
 
@@ -99,26 +111,38 @@ public class ActualizarInvestigador extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Primero debe buscar un investigador"
+                    "Primero debe buscar un investigador."
+            );
+
+            return;
+        }
+
+        if (txtNombre.getText().trim().isEmpty()
+                || txtGenero.getText().trim().isEmpty()
+                || txtContrasenia.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Complete todos los campos."
             );
 
             return;
         }
 
         investigadorActual.setNombre(
-                txtNombre.getText());
+                txtNombre.getText().trim());
 
         investigadorActual.setGenero(
-                txtGenero.getText());
+                txtGenero.getText().trim());
 
         investigadorActual.setContrasenia(
-                txtContrasenia.getText());
+                txtContrasenia.getText().trim());
 
         controlador.guardarDatos();
 
         JOptionPane.showMessageDialog(
                 this,
-                "Investigador actualizado"
+                "Investigador actualizado correctamente."
         );
 
         dispose();

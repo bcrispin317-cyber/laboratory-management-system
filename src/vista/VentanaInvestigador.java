@@ -12,7 +12,7 @@ public class VentanaInvestigador extends JFrame {
     private JButton btnCerrarSesion;
 
     private Investigador investigador;
-    
+
     private PanelAnalisis panelAnalisis;
     private PanelResultados panelResultados;
 
@@ -41,7 +41,7 @@ public class VentanaInvestigador extends JFrame {
                 "Resultados",
                 panelResultados
         );
-        
+
         pestanias.addChangeListener(e -> {
 
             if (pestanias.getSelectedIndex() == 1) {

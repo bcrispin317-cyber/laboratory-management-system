@@ -56,9 +56,22 @@ public class ActualizarMuestra extends JFrame {
 
     private void buscar() {
 
-        String codigo = txtCodigo.getText();
+        controlador = new LaboratorioControlador();
 
-        for (Muestra m : controlador.getSistema().getMuestras()) {
+        String codigo = txtCodigo.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un código."
+            );
+
+            return;
+        }
+
+        for (Muestra m :
+                controlador.getSistema().getMuestras()) {
 
             if (m.getCodigo().equals(codigo)) {
 
@@ -74,7 +87,7 @@ public class ActualizarMuestra extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Muestra no encontrada"
+                "Muestra no encontrada."
         );
     }
 
@@ -84,21 +97,31 @@ public class ActualizarMuestra extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Primero busque una muestra"
+                    "Primero busque una muestra."
+            );
+
+            return;
+        }
+
+        if (txtDescripcion.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese una descripción."
             );
 
             return;
         }
 
         muestraActual.setDescripcion(
-                txtDescripcion.getText()
+                txtDescripcion.getText().trim()
         );
 
         controlador.guardarDatos();
 
         JOptionPane.showMessageDialog(
                 this,
-                "Muestra actualizada"
+                "Muestra actualizada correctamente."
         );
 
         dispose();

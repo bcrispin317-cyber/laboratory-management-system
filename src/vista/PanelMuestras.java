@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.awt.Desktop;
 
+import javax.swing.table.DefaultTableCellRenderer;
+
 public class PanelMuestras extends JPanel {
 
     private JTable tabla;
@@ -29,6 +31,12 @@ public class PanelMuestras extends JPanel {
         controlador = new LaboratorioControlador();
 
         setLayout(new BorderLayout());
+        
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        10, 10, 10, 10
+                )
+        );
 
         modelo = new DefaultTableModel();
 
@@ -38,10 +46,33 @@ public class PanelMuestras extends JPanel {
         modelo.addColumn("Investigador");
 
         tabla = new JTable(modelo);
-        tabla.setRowHeight(25);
+        tabla.setRowHeight(28);
+
+        tabla.setFont(
+                new Font("Segoe UI", Font.PLAIN, 13)
+        );
+
+        tabla.getTableHeader().setFont(
+                new Font("Segoe UI", Font.BOLD, 14)
+        );
+        
+        DefaultTableCellRenderer centro =
+                new DefaultTableCellRenderer();
+
+        centro.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+
+            tabla.getColumnModel()
+                    .getColumn(i)
+                    .setCellRenderer(centro);
+        }
+        
         
         tabla.setDefaultRenderer(Object.class,
-                new javax.swing.table.DefaultTableCellRenderer() {
+                new DefaultTableCellRenderer() {
 
             @Override
             public Component getTableCellRendererComponent(
@@ -60,6 +91,9 @@ public class PanelMuestras extends JPanel {
                                 hasFocus,
                                 row,
                                 column);
+                setHorizontalAlignment(
+                        SwingConstants.CENTER
+                );
 
                 String estado =
                         table.getValueAt(row, 2).toString();
@@ -98,6 +132,37 @@ public class PanelMuestras extends JPanel {
         btnVer = new JButton("Ver");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
+        
+        Font fuenteBoton =
+                new Font("Segoe UI", Font.BOLD, 14);
+
+        btnCrear.setFont(fuenteBoton);
+        btnCargar.setFont(fuenteBoton);
+        btnVer.setFont(fuenteBoton);
+        btnActualizar.setFont(fuenteBoton);
+        btnEliminar.setFont(fuenteBoton);
+
+        btnCrear.setBackground(new Color(46,204,113));
+        btnCrear.setForeground(Color.WHITE);
+
+        btnCargar.setBackground(new Color(52,152,219));
+        btnCargar.setForeground(Color.WHITE);
+
+        btnVer.setBackground(new Color(155,89,182));
+        btnVer.setForeground(Color.WHITE);
+
+        btnActualizar.setBackground(new Color(241,196,15));
+        btnActualizar.setForeground(Color.BLACK);
+
+        btnEliminar.setBackground(new Color(231,76,60));
+        btnEliminar.setForeground(Color.WHITE);
+
+        btnCrear.setFocusPainted(false);
+        btnCargar.setFocusPainted(false);
+        btnVer.setFocusPainted(false);
+        btnActualizar.setFocusPainted(false);
+        btnEliminar.setFocusPainted(false);
+        
 
         panelBotones.add(btnCrear);
         panelBotones.add(btnCargar);
@@ -248,6 +313,11 @@ public class PanelMuestras extends JPanel {
                     "Error al generar HTML"
             );
         }
+    }
+    
+    public void actualizar() {
+
+        cargarTabla();
     }
     
 }

@@ -2,8 +2,6 @@ package vista;
 
 import controlador.LaboratorioControlador;
 import modelo.Investigador;
-import vista.VentanaAdministrador;
-import vista.VentanaInvestigador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,24 +19,68 @@ public class Login extends JFrame {
 
         controlador = new LaboratorioControlador();
 
+        Font fuente = new Font("Segoe UI", Font.PLAIN, 15);
+        Font titulo = new Font("Segoe UI", Font.BOLD, 16);
+
         setTitle("IPC Quimik");
-        setSize(400, 250);
+        setSize(500, 380);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new GridLayout(3, 2, 10, 10));
 
-        add(new JLabel("Código"));
+        getContentPane().setBackground(Color.WHITE);
+        setLayout(new BorderLayout());
+
+        JPanel panelTitulo = new JPanel(new GridLayout(2, 1));
+        panelTitulo.setBackground(Color.WHITE);
+
+        JLabel lblTitulo = new JLabel("IPC Quimik");
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 26));
+
+        JLabel lblSubtitulo = new JLabel("Sistema de Laboratorio");
+        lblSubtitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblSubtitulo.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+
+        panelTitulo.add(lblTitulo);
+        panelTitulo.add(lblSubtitulo);
+
+        add(panelTitulo, BorderLayout.NORTH);
+
+        JPanel panelFormulario = new JPanel(new GridLayout(3, 2, 15, 15));
+        panelFormulario.setBackground(Color.WHITE);
+        panelFormulario.setBorder(
+                BorderFactory.createEmptyBorder(
+                        20, 20, 20, 20
+                )
+        );
+
+        JLabel lblCodigo = new JLabel("Código");
+        lblCodigo.setFont(titulo);
+        panelFormulario.add(lblCodigo);
+
         txtCodigo = new JTextField();
-        add(txtCodigo);
+        txtCodigo.setFont(fuente);
+        panelFormulario.add(txtCodigo);
 
-        add(new JLabel("Contraseña"));
+        JLabel lblContrasenia = new JLabel("Contraseña");
+        lblContrasenia.setFont(titulo);
+        panelFormulario.add(lblContrasenia);
+
         txtContrasenia = new JPasswordField();
-        add(txtContrasenia);
+        txtContrasenia.setFont(fuente);
+        panelFormulario.add(txtContrasenia);
 
-        add(new JLabel());
+        panelFormulario.add(new JLabel());
 
         btnIngresar = new JButton("Iniciar Sesión");
-        add(btnIngresar);
+        btnIngresar.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        btnIngresar.setBackground(new Color(52, 152, 219));
+        btnIngresar.setForeground(Color.WHITE);
+        btnIngresar.setFocusPainted(false);
+
+        panelFormulario.add(btnIngresar);
+
+        add(panelFormulario, BorderLayout.CENTER);
 
         btnIngresar.addActionListener((ActionEvent e) -> {
             iniciarSesion();
@@ -49,32 +91,47 @@ public class Login extends JFrame {
 
     private void iniciarSesion() {
 
-        String codigo = txtCodigo.getText();
-        String pass = new String(txtContrasenia.getPassword());
+        controlador = new LaboratorioControlador();
 
-        if (codigo.equals("admin") && pass.equals("admin")) {
+        String codigo = txtCodigo.getText().trim();
+        String pass = new String(
+                txtContrasenia.getPassword()
+        ).trim();
 
-            new VentanaAdministrador();
+        if (codigo.isEmpty() || pass.isEmpty()) {
 
-            dispose();
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Complete todos los campos."
+            );
 
             return;
         }
 
-        for (Investigador i : controlador.getSistema().getInvestigadores()) {
+        if (codigo.equals("admin")
+                && pass.equals("admin")) {
 
-            if (i.getCodigo().equals(codigo)
-                    && i.getContrasenia().equals(pass)) {
+            new VentanaAdministrador();
+            dispose();
+            return;
+        }
 
-                new VentanaInvestigador(i);
+        for (Investigador investigador :
+                controlador.getSistema().getInvestigadores()) {
+
+            if (investigador.getCodigo().equals(codigo)
+                    && investigador.getContrasenia().equals(pass)) {
+
+                new VentanaInvestigador(investigador);
 
                 dispose();
-
                 return;
             }
         }
 
-        JOptionPane.showMessageDialog(this,
-                "Credenciales incorrectas");
+        JOptionPane.showMessageDialog(
+                this,
+                "Código o contraseña incorrectos."
+        );
     }
 }
