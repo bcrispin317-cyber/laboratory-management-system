@@ -69,30 +69,48 @@ public class CrearPatron extends JFrame {
                     "Archivo seleccionado:\n" + archivo.getName()
             );
 
+            // Aquí luego puedes cargar la matriz real
             matrizPatron = new int[1][1];
         }
     }
 
     private void crearPatron() {
 
-        String codigo = txtCodigo.getText();
-        String nombre = txtNombre.getText();
+        String codigo = txtCodigo.getText().trim();
+        String nombre = txtNombre.getText().trim();
 
+        // Validar campos vacíos
         if (codigo.isEmpty() || nombre.isEmpty()) {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Complete todos los campos"
+                    "Complete todos los campos."
             );
 
             return;
         }
 
+        // Validar código repetido
+        for (Patron patron :
+                controlador.getSistema().getPatrones()) {
+
+            if (patron.getCodigo().equalsIgnoreCase(codigo)) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Ya existe un patrón con ese código."
+                );
+
+                return;
+            }
+        }
+
+        // Validar que se haya cargado un patrón
         if (matrizPatron == null) {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Debe cargar un patrón"
+                    "Debe cargar un patrón."
             );
 
             return;
@@ -112,7 +130,7 @@ public class CrearPatron extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Patrón creado correctamente"
+                "Patrón creado correctamente."
         );
 
         dispose();

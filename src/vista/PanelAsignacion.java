@@ -71,7 +71,8 @@ public class PanelAsignacion extends JPanel {
         for (Muestra muestra :
                 controlador.getSistema().getMuestras()) {
 
-            if ("Ingreso".equals(muestra.getEstado())) {
+            if (!"Procesado".equalsIgnoreCase(
+                    muestra.getEstado().trim())) {
 
                 comboMuestras.addItem(
                         muestra.getCodigo()
@@ -93,7 +94,7 @@ public class PanelAsignacion extends JPanel {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Debe seleccionar investigador y muestra"
+                    "Debe seleccionar investigador y muestra."
             );
 
             return;
@@ -132,7 +133,7 @@ public class PanelAsignacion extends JPanel {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Experimento asignado correctamente"
+                "Experimento asignado correctamente."
         );
 
         cargarMuestras();

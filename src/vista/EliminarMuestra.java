@@ -2,6 +2,7 @@ package vista;
 
 import controlador.LaboratorioControlador;
 import modelo.Muestra;
+import modelo.Resultado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,12 +47,22 @@ public class EliminarMuestra extends JFrame {
 
     private void buscar() {
 
-        String codigo = txtCodigo.getText();
+        String codigo = txtCodigo.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un código."
+            );
+
+            return;
+        }
 
         for (Muestra m :
                 controlador.getSistema().getMuestras()) {
 
-            if (m.getCodigo().equals(codigo)) {
+            if (m.getCodigo().equalsIgnoreCase(codigo)) {
 
                 muestraActual = m;
 
@@ -67,7 +78,7 @@ public class EliminarMuestra extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Muestra no encontrada"
+                "Muestra no encontrada."
         );
     }
 
@@ -77,10 +88,26 @@ public class EliminarMuestra extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Primero busque una muestra"
+                    "Primero busque una muestra."
             );
 
             return;
+        }
+
+        // Validar si la muestra ya tiene resultados
+        for (Resultado resultado :
+                controlador.getSistema().getResultados()) {
+
+            if (resultado.getCodigoMuestra().equals(
+                    muestraActual.getCodigo())) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No se puede eliminar la muestra porque ya fue analizada."
+                );
+
+                return;
+            }
         }
 
         int opcion = JOptionPane.showConfirmDialog(
@@ -100,7 +127,7 @@ public class EliminarMuestra extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Muestra eliminada"
+                    "Muestra eliminada correctamente."
             );
 
             dispose();

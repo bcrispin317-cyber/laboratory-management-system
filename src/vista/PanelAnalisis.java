@@ -20,6 +20,8 @@ public class PanelAnalisis extends JPanel {
     private JButton btnAnalizar;
 
     private JLabel lblResultado;
+    
+    private JProgressBar barraProgreso;
 
     private LaboratorioControlador controlador;
     
@@ -41,7 +43,8 @@ public class PanelAnalisis extends JPanel {
                 controlador.getSistema().getMuestras()) {
 
             if (investigador.getCodigo().equals(
-                    muestra.getInvestigadorAsignado())) {
+                    muestra.getInvestigadorAsignado())
+                    && muestra.getEstado().equals("En Proceso")) {
 
                 comboMuestras.addItem(
                         muestra.getCodigo()
@@ -74,8 +77,42 @@ public class PanelAnalisis extends JPanel {
 
         lblResultado = new JLabel("Pendiente");
         add(lblResultado);
+        
+        barraProgreso = new JProgressBar(0, 100);
+        barraProgreso.setValue(0);
+        barraProgreso.setStringPainted(true);
+
+        add(new JLabel("Progreso"));
+        add(barraProgreso);
 
         btnAnalizar.addActionListener(e -> {
+
+        barraProgreso.setValue(0);
+        btnAnalizar.setEnabled(false);
+
+        if (comboMuestras.getSelectedItem() == null) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No hay muestras pendientes."
+            );
+
+            btnAnalizar.setEnabled(true);
+
+            return;
+        }
+
+        if (comboPatrones.getSelectedItem() == null) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No existen patrones."
+            );
+
+            btnAnalizar.setEnabled(true);
+
+            return;
+        }
 
             String codigoMuestra =
                     comboMuestras.getSelectedItem().toString();
@@ -106,6 +143,19 @@ public class PanelAnalisis extends JPanel {
                 }
             }
 
+            if (muestraSeleccionada == null
+                    || patronSeleccionado == null) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No fue posible encontrar la muestra o el patrón."
+                );
+
+                btnAnalizar.setEnabled(true);
+
+                return;
+            }
+
             int filasMuestra =
                     muestraSeleccionada.getPatron().length;
 
@@ -117,6 +167,8 @@ public class PanelAnalisis extends JPanel {
                 lblResultado.setText(
                         "Las matrices no tienen el mismo tamaño"
                 );
+
+                btnAnalizar.setEnabled(true);
 
                 return;
             }
@@ -262,7 +314,7 @@ public class PanelAnalisis extends JPanel {
                                 + patronSeleccionado.getNombre()
                 );
             }
-            
+
             String resultadoTexto;
 
             if (coincide) {
@@ -293,25 +345,43 @@ public class PanelAnalisis extends JPanel {
                     .getResultados()
                     .add(resultado);
 
-            muestraSeleccionada.setEstado(
-                    "Procesado"
-            );
+            muestraSeleccionada.setEstado("Procesado");
 
             controlador.guardarDatos();
+
+            System.out.println("Resultado registrado.");
+
             cargarMuestras();
+
+            if (comboPatrones.getItemCount() > 0) {
+
+                comboPatrones.setSelectedIndex(0);
+            }
+
+            if (comboMuestras.getItemCount() == 0) {
+
+                lblResultado.setText(
+                        "No hay muestras pendientes."
+                );
+
+                btnAnalizar.setEnabled(false);
+
+            } else {
+
+                lblResultado.setText("Pendiente");
+
+                btnAnalizar.setEnabled(true);
+            }
 
             System.out.println(
                     "Resultado guardado correctamente"
             );
+
+            barraProgreso.setValue(100);
             
-            if (muestraSeleccionada.getEstado().equals("Procesado")) {
+            if (comboMuestras.getItemCount() > 0) {
 
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Esta muestra ya fue procesada."
-                );
-
-                return;
+                comboMuestras.setSelectedIndex(0);
             }
 
         });
@@ -323,7 +393,18 @@ public class PanelAnalisis extends JPanel {
 
         controlador = new LaboratorioControlador();
 
-        cargarMuestras();
+        for (Muestra muestra :
+                controlador.getSistema().getMuestras()) {
+
+            if (investigador.getCodigo().equals(
+                    muestra.getInvestigadorAsignado())
+                    && muestra.getEstado().equals("En Proceso")) {
+
+                comboMuestras.addItem(
+                        muestra.getCodigo()
+                );
+            }
+        }
     }
     
 }

@@ -111,7 +111,10 @@ public class PanelMuestras extends JPanel {
         cargarTabla();
 
         btnCrear.addActionListener(e -> {
+
             new CrearMuestra();
+
+            cargarTabla();
         });
 
         btnCargar.addActionListener(e -> {
@@ -119,11 +122,17 @@ public class PanelMuestras extends JPanel {
         });
         
         btnActualizar.addActionListener(e -> {
+
             new ActualizarMuestra();
+
+            cargarTabla();
         });
         
         btnEliminar.addActionListener(e -> {
+
             new EliminarMuestra();
+
+            cargarTabla();
         });
         
         btnVer.addActionListener(e -> {

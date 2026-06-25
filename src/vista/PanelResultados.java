@@ -6,16 +6,17 @@ import modelo.Resultado;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
+import java.awt.Desktop;
 import java.io.File;
 import java.io.PrintWriter;
-import java.awt.Desktop;
 
 public class PanelResultados extends JPanel {
 
     private JTable tabla;
     private DefaultTableModel modelo;
+
     private JButton btnVer;
+    private JButton btnActualizar;
 
     private LaboratorioControlador controlador;
 
@@ -36,25 +37,34 @@ public class PanelResultados extends JPanel {
 
         tabla = new JTable(modelo);
 
-        JScrollPane scroll =
-                new JScrollPane(tabla);
-        
-        btnVer = new JButton("Ver Resultado");
-
-        JPanel panel = new JPanel();
-
-        panel.add(btnVer);
-
-        add(panel, BorderLayout.SOUTH);
+        JScrollPane scroll = new JScrollPane(tabla);
 
         add(scroll, BorderLayout.CENTER);
 
+        btnVer = new JButton("Ver Resultado");
+        btnActualizar = new JButton("Actualizar");
+
+        JPanel panelBotones = new JPanel();
+
+        panelBotones.add(btnVer);
+        panelBotones.add(btnActualizar);
+
+        add(panelBotones, BorderLayout.SOUTH);
+
         cargarResultados();
-        
-        btnVer.addActionListener(e -> verResultado());
+
+        btnActualizar.addActionListener(e -> {
+            cargarResultados();
+        });
+
+        btnVer.addActionListener(e -> {
+            verResultado();
+        });
     }
 
     private void cargarResultados() {
+
+        controlador = new LaboratorioControlador();
 
         modelo.setRowCount(0);
 
@@ -71,7 +81,7 @@ public class PanelResultados extends JPanel {
             });
         }
     }
-    
+
     private void verResultado() {
 
         int fila = tabla.getSelectedRow();
@@ -80,7 +90,7 @@ public class PanelResultados extends JPanel {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Seleccione un resultado"
+                    "Seleccione un resultado."
             );
 
             return;
@@ -143,8 +153,13 @@ public class PanelResultados extends JPanel {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Error al generar HTML"
+                    "Error al generar el reporte."
             );
         }
+    }
+    
+    public void actualizar() {
+
+        cargarResultados();
     }
 }

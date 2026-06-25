@@ -20,6 +20,10 @@ public class VentanaAdministrador extends JFrame {
         pestañas.addTab("Muestras", new PanelMuestras());
         pestañas.addTab("Asignación de Experimentos", new PanelAsignacion());
         pestañas.addTab("Patrones", new PanelPatrones());
+        pestañas.addTab(
+                "Estadísticas",
+                new PanelEstadisticas()
+        );
 
         add(pestañas);
 

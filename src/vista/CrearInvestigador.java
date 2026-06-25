@@ -50,10 +50,39 @@ public class CrearInvestigador extends JFrame {
 
         btnCrear.addActionListener(e -> {
 
-            String codigo = txtCodigo.getText();
-            String nombre = txtNombre.getText();
-            String genero = txtGenero.getText();
-            String contrasenia = txtContrasenia.getText();
+            String codigo = txtCodigo.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            String genero = txtGenero.getText().trim();
+            String contrasenia = txtContrasenia.getText().trim();
+
+            // Validar campos vacíos
+            if (codigo.isEmpty()
+                    || nombre.isEmpty()
+                    || genero.isEmpty()
+                    || contrasenia.isEmpty()) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Complete todos los campos."
+                );
+
+                return;
+            }
+
+            // Validar código repetido
+            for (Investigador investigador :
+                    controlador.getSistema().getInvestigadores()) {
+
+                if (investigador.getCodigo().equalsIgnoreCase(codigo)) {
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Ya existe un investigador con ese código."
+                    );
+
+                    return;
+                }
+            }
 
             Investigador investigador = new Investigador(
                     codigo,
@@ -71,7 +100,7 @@ public class CrearInvestigador extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Investigador creado correctamente"
+                    "Investigador creado correctamente."
             );
 
             dispose();

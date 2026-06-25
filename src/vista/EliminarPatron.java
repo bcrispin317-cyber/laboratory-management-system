@@ -2,6 +2,7 @@ package vista;
 
 import controlador.LaboratorioControlador;
 import modelo.Patron;
+import modelo.Resultado;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,12 +47,22 @@ public class EliminarPatron extends JFrame {
 
     private void buscar() {
 
-        String codigo = txtCodigo.getText();
+        String codigo = txtCodigo.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un código."
+            );
+
+            return;
+        }
 
         for (Patron p :
                 controlador.getSistema().getPatrones()) {
 
-            if (p.getCodigo().equals(codigo)) {
+            if (p.getCodigo().equalsIgnoreCase(codigo)) {
 
                 patronActual = p;
 
@@ -66,7 +77,7 @@ public class EliminarPatron extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Patrón no encontrado"
+                "Patrón no encontrado."
         );
     }
 
@@ -76,10 +87,25 @@ public class EliminarPatron extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Primero busque un patrón"
+                    "Primero busque un patrón."
             );
 
             return;
+        }
+
+        for (Resultado resultado :
+                controlador.getSistema().getResultados()) {
+
+            if (resultado.getCodigoPatron().equals(
+                    patronActual.getCodigo())) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No se puede eliminar el patrón porque ya fue utilizado en un análisis."
+                );
+
+                return;
+            }
         }
 
         int opcion = JOptionPane.showConfirmDialog(
@@ -99,7 +125,7 @@ public class EliminarPatron extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Patrón eliminado"
+                    "Patrón eliminado correctamente."
             );
 
             dispose();

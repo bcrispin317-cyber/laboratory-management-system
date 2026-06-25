@@ -12,6 +12,9 @@ public class VentanaInvestigador extends JFrame {
     private JButton btnCerrarSesion;
 
     private Investigador investigador;
+    
+    private PanelAnalisis panelAnalisis;
+    private PanelResultados panelResultados;
 
     public VentanaInvestigador(Investigador investigador) {
 
@@ -26,15 +29,26 @@ public class VentanaInvestigador extends JFrame {
 
         pestanias = new JTabbedPane();
 
+        panelAnalisis = new PanelAnalisis(investigador);
+        panelResultados = new PanelResultados();
+
         pestanias.addTab(
                 "Análisis",
-                new PanelAnalisis(investigador)
+                panelAnalisis
         );
-        
+
         pestanias.addTab(
                 "Resultados",
-                new PanelResultados()
+                panelResultados
         );
+        
+        pestanias.addChangeListener(e -> {
+
+            if (pestanias.getSelectedIndex() == 1) {
+
+                panelResultados.actualizar();
+            }
+        });
 
         add(pestanias, BorderLayout.CENTER);
 

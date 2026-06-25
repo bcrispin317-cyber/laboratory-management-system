@@ -40,7 +40,7 @@ public class CrearMuestra extends JFrame {
         add(new JLabel("Descripción"));
         txtDescripcion = new JTextField();
         add(txtDescripcion);
-        
+
         add(new JLabel("Patrón"));
 
         btnCargarPatron =
@@ -52,26 +52,57 @@ public class CrearMuestra extends JFrame {
 
         btnCrear = new JButton("Crear");
         add(btnCrear);
-        
+
         btnCargarPatron.addActionListener(
                 e -> cargarPatron()
         );
 
-        btnCrear.addActionListener(e -> crearMuestra());
+        btnCrear.addActionListener(
+                e -> crearMuestra()
+        );
 
         setVisible(true);
     }
 
     private void crearMuestra() {
 
-        String codigo = txtCodigo.getText();
-        String descripcion = txtDescripcion.getText();
-        
+        String codigo =
+                txtCodigo.getText().trim();
+
+        String descripcion =
+                txtDescripcion.getText().trim();
+
+        if (codigo.isEmpty()
+                || descripcion.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Complete todos los campos."
+            );
+
+            return;
+        }
+
+        for (Muestra muestra :
+                controlador.getSistema().getMuestras()) {
+
+            if (muestra.getCodigo()
+                    .equalsIgnoreCase(codigo)) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Ya existe una muestra con ese código."
+                );
+
+                return;
+            }
+        }
+
         if (matrizMuestra == null) {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Debe cargar una matriz"
+                    "Debe cargar una matriz."
             );
 
             return;
@@ -88,16 +119,28 @@ public class CrearMuestra extends JFrame {
                 .getMuestras()
                 .add(muestra);
 
+        System.out.println(
+                "Antes de guardar: "
+                + controlador.getSistema().getMuestras().size()
+        );
+
+        controlador.guardarDatos();
+
+        System.out.println(
+                "Después de guardar: "
+                + controlador.getSistema().getMuestras().size()
+        );
+
         controlador.guardarDatos();
 
         JOptionPane.showMessageDialog(
                 this,
-                "Muestra creada correctamente"
+                "Muestra creada correctamente."
         );
 
         dispose();
     }
-    
+
     private void cargarPatron() {
 
         JFileChooser selector =
@@ -161,17 +204,17 @@ public class CrearMuestra extends JFrame {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Matriz cargada correctamente"
+                        "Matriz cargada correctamente."
                 );
 
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Error al cargar matriz"
+                        "Error al cargar la matriz."
                 );
             }
         }
     }
-
+    
 }

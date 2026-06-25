@@ -2,6 +2,7 @@ package vista;
 
 import controlador.LaboratorioControlador;
 import modelo.Investigador;
+import modelo.Muestra;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,18 +47,29 @@ public class EliminarInvestigador extends JFrame {
 
     private void buscar() {
 
-        String codigo = txtCodigo.getText();
+        String codigo = txtCodigo.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un código."
+            );
+
+            return;
+        }
 
         for (Investigador i :
                 controlador.getSistema().getInvestigadores()) {
 
-            if (i.getCodigo().equals(codigo)) {
+            if (i.getCodigo().equalsIgnoreCase(codigo)) {
 
                 investigadorActual = i;
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Investigador encontrado: " + i.getNombre()
+                        "Investigador encontrado: "
+                                + i.getNombre()
                 );
 
                 return;
@@ -66,7 +78,7 @@ public class EliminarInvestigador extends JFrame {
 
         JOptionPane.showMessageDialog(
                 this,
-                "Investigador no encontrado"
+                "Investigador no encontrado."
         );
     }
 
@@ -76,10 +88,26 @@ public class EliminarInvestigador extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Primero busque un investigador"
+                    "Primero busque un investigador."
             );
 
             return;
+        }
+
+        // Verificar si tiene muestras asignadas
+        for (Muestra muestra :
+                controlador.getSistema().getMuestras()) {
+
+            if (investigadorActual.getCodigo().equals(
+                    muestra.getInvestigadorAsignado())) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No se puede eliminar el investigador porque tiene muestras asignadas."
+                );
+
+                return;
+            }
         }
 
         int opcion = JOptionPane.showConfirmDialog(
@@ -99,7 +127,7 @@ public class EliminarInvestigador extends JFrame {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Investigador eliminado"
+                    "Investigador eliminado correctamente."
             );
 
             dispose();
