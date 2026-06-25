@@ -20,14 +20,18 @@ public class VentanaInvestigador extends JFrame {
 
         this.investigador = investigador;
 
-        setTitle("Investigación - IPC Quimik");
-        setSize(900, 600);
+        setTitle("Investigador - IPC Quimik");
+        setSize(760,520);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setLayout(new BorderLayout());
 
         pestanias = new JTabbedPane();
+
+        pestanias.setFont(
+                new Font("Segoe UI", Font.PLAIN, 14)
+        );
 
         panelAnalisis = new PanelAnalisis(investigador);
         panelResultados = new PanelResultados();
@@ -54,6 +58,20 @@ public class VentanaInvestigador extends JFrame {
 
         btnCerrarSesion =
                 new JButton("Cerrar Sesión");
+
+        btnCerrarSesion.setFont(
+                new Font("Segoe UI", Font.BOLD, 14)
+        );
+
+        btnCerrarSesion.setBackground(
+                new Color(231, 76, 60)
+        );
+
+        btnCerrarSesion.setForeground(
+                Color.WHITE
+        );
+
+        btnCerrarSesion.setFocusPainted(false);
 
         add(btnCerrarSesion, BorderLayout.SOUTH);
 

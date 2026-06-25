@@ -33,9 +33,49 @@ public class PanelAnalisis extends JPanel {
 
         controlador = new LaboratorioControlador();
 
-        setLayout(new GridLayout(4, 2, 10, 10));
+        setLayout(new BorderLayout());
+        
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        15,
+                        25,
+                        15,
+                        25
+                )
+        );
+        
+        JPanel panelPrincipal = new JPanel();
 
-        add(new JLabel("Muestra"));
+        panelPrincipal.setLayout(
+                new GridLayout(4,1,15,20)
+        );
+
+        panelPrincipal.setOpaque(false);
+        
+        Font titulo =
+                new Font("Segoe UI", Font.BOLD, 15);
+
+        Font texto =
+                new Font("Segoe UI", Font.PLAIN, 15);
+        
+        JPanel panelSuperior = new JPanel(
+                new FlowLayout(
+                        FlowLayout.CENTER,
+                        15,
+                        10
+                )
+        );
+
+        panelSuperior.setOpaque(false);
+
+        JLabel lblMuestra = new JLabel("Muestra");
+        lblMuestra.setFont(titulo);
+        
+        lblMuestra.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+        
+        panelSuperior.add(lblMuestra);
 
         comboMuestras = new JComboBox<>();
 
@@ -51,10 +91,21 @@ public class PanelAnalisis extends JPanel {
                 );
             }
         }
+        
+        comboMuestras.setFont(texto);
 
-        add(comboMuestras);
+        comboMuestras.setPreferredSize(
+                new Dimension(180,35)
+        );
 
-        add(new JLabel("Patrón"));
+        panelSuperior.add(comboMuestras);
+
+        JLabel lblPatron = new JLabel("Patrón");
+        lblPatron.setFont(titulo);
+        lblPatron.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+        panelSuperior.add(lblPatron);
 
         comboPatrones = new JComboBox<>();
 
@@ -65,25 +116,120 @@ public class PanelAnalisis extends JPanel {
                     patron.getCodigo()
             );
         }
+        
+        comboPatrones.setFont(texto);
 
-        add(comboPatrones);
+        comboPatrones.setPreferredSize(
+                new Dimension(180,35)
+        );
 
-        add(new JLabel());
+        panelSuperior.add(comboPatrones);
+
+        JPanel panelBoton = new JPanel(
+                new FlowLayout(
+                        FlowLayout.CENTER,
+                        8,
+                        10
+                )
+        );
+        panelPrincipal.add(panelSuperior);
+        panelBoton.setOpaque(false);
 
         btnAnalizar = new JButton("Analizar");
-        add(btnAnalizar);
+        btnAnalizar.setFont(
+                new Font(
+                        "Segoe UI",
+                        Font.BOLD,
+                        15
+                )
+        );
 
-        add(new JLabel("Resultado"));
+        btnAnalizar.setBackground(
+                new Color(46, 204, 113)
+        );
+
+        btnAnalizar.setForeground(
+                Color.WHITE
+        );
+
+        btnAnalizar.setFocusPainted(false);
+
+        btnAnalizar.setPreferredSize(
+                new Dimension(170, 45)
+        );
+
+        panelBoton.add(btnAnalizar);
+
+        panelPrincipal.add(panelBoton);
+
+        JLabel lblRes = new JLabel("Resultado");
+        lblRes.setFont(titulo);
+        lblRes.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        JPanel panelResultado = new JPanel(
+                new FlowLayout(
+                        FlowLayout.CENTER,
+                        20,
+                        5
+                )
+        );
+
+        panelResultado.setOpaque(false);
 
         lblResultado = new JLabel("Pendiente");
-        add(lblResultado);
-        
+
+        lblResultado.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        lblResultado.setFont(
+                new Font(
+                        "Segoe UI",
+                        Font.BOLD,
+                        15
+                )
+        );
+
+        lblResultado.setForeground(
+                Color.DARK_GRAY
+        );
+
+        panelResultado.add(lblRes);
+        panelResultado.add(lblResultado);
+
+        panelPrincipal.add(panelResultado);
+
         barraProgreso = new JProgressBar(0, 100);
         barraProgreso.setValue(0);
         barraProgreso.setStringPainted(true);
+        barraProgreso.setPreferredSize(
+                new Dimension(220,25)
+        );
 
-        add(new JLabel("Progreso"));
-        add(barraProgreso);
+        JLabel lblProg = new JLabel("Progreso");
+        lblProg.setFont(titulo);
+        lblProg.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        JPanel panelProgreso = new JPanel(
+                new FlowLayout(
+                        FlowLayout.CENTER,
+                        20,
+                        5
+                )
+        );
+
+        panelProgreso.setOpaque(false);
+
+        panelProgreso.add(lblProg);
+        panelProgreso.add(barraProgreso);
+
+        panelPrincipal.add(panelProgreso);
+        
+        add(panelPrincipal, BorderLayout.CENTER);
 
         btnAnalizar.addActionListener(e -> {
 
@@ -306,6 +452,10 @@ public class PanelAnalisis extends JPanel {
                         "La muestra coincide con "
                                 + patronSeleccionado.getNombre()
                 );
+                
+                lblResultado.setForeground(
+                        new Color(46,204,113)
+                );
 
             } else {
 
@@ -313,6 +463,12 @@ public class PanelAnalisis extends JPanel {
                         "La muestra NO coincide con "
                                 + patronSeleccionado.getNombre()
                 );
+                
+                
+                lblResultado.setForeground(
+                        Color.RED
+                );
+                
             }
 
             String resultadoTexto;
@@ -369,6 +525,10 @@ public class PanelAnalisis extends JPanel {
             } else {
 
                 lblResultado.setText("Pendiente");
+                
+                lblResultado.setForeground(
+                        Color.DARK_GRAY
+                );
 
                 btnAnalizar.setEnabled(true);
             }

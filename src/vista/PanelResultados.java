@@ -4,6 +4,7 @@ import controlador.LaboratorioControlador;
 import modelo.Resultado;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.Desktop;
@@ -26,6 +27,15 @@ public class PanelResultados extends JPanel {
 
         setLayout(new BorderLayout());
 
+        setBorder(
+                BorderFactory.createEmptyBorder(
+                        10,
+                        10,
+                        10,
+                        10
+                )
+        );
+
         modelo = new DefaultTableModel();
 
         modelo.addColumn("No.");
@@ -37,34 +47,110 @@ public class PanelResultados extends JPanel {
 
         tabla = new JTable(modelo);
 
-        JScrollPane scroll = new JScrollPane(tabla);
+        tabla.setRowHeight(28);
+
+        tabla.setFont(
+                new Font("Segoe UI",
+                        Font.PLAIN,
+                        13)
+        );
+
+        tabla.getTableHeader().setFont(
+                new Font("Segoe UI",
+                        Font.BOLD,
+                        14)
+        );
+
+        tabla.setDefaultEditor(
+                Object.class,
+                null
+        );
+
+        DefaultTableCellRenderer centro =
+                new DefaultTableCellRenderer();
+
+        centro.setHorizontalAlignment(
+                SwingConstants.CENTER
+        );
+
+        for (int i = 0;
+             i < tabla.getColumnCount();
+             i++) {
+
+            tabla.getColumnModel()
+                    .getColumn(i)
+                    .setCellRenderer(centro);
+        }
+
+        JScrollPane scroll =
+                new JScrollPane(tabla);
 
         add(scroll, BorderLayout.CENTER);
 
-        btnVer = new JButton("Ver Resultado");
-        btnActualizar = new JButton("Actualizar");
+        btnVer =
+                new JButton("Ver Resultado");
 
-        JPanel panelBotones = new JPanel();
+        btnActualizar =
+                new JButton("Actualizar");
+
+        Font fuenteBoton =
+                new Font("Segoe UI",
+                        Font.BOLD,
+                        14);
+
+        btnVer.setFont(fuenteBoton);
+        btnActualizar.setFont(fuenteBoton);
+
+        btnVer.setBackground(
+                new Color(155,89,182));
+
+        btnVer.setForeground(
+                Color.WHITE);
+
+        btnActualizar.setBackground(
+                new Color(52,152,219));
+
+        btnActualizar.setForeground(
+                Color.WHITE);
+
+        btnVer.setFocusPainted(false);
+        btnActualizar.setFocusPainted(false);
+
+        JPanel panelBotones =
+                new JPanel();
+
+        panelBotones.setBorder(
+                BorderFactory.createEmptyBorder(
+                        10,
+                        0,
+                        0,
+                        0
+                )
+        );
 
         panelBotones.add(btnVer);
         panelBotones.add(btnActualizar);
 
-        add(panelBotones, BorderLayout.SOUTH);
+        add(panelBotones,
+                BorderLayout.SOUTH);
 
         cargarResultados();
 
         btnActualizar.addActionListener(e -> {
+
             cargarResultados();
         });
 
         btnVer.addActionListener(e -> {
+
             verResultado();
         });
     }
 
     private void cargarResultados() {
 
-        controlador = new LaboratorioControlador();
+        controlador =
+                new LaboratorioControlador();
 
         modelo.setRowCount(0);
 
@@ -72,19 +158,20 @@ public class PanelResultados extends JPanel {
                 controlador.getSistema().getResultados()) {
 
             modelo.addRow(new Object[]{
-                resultado.getNumero(),
-                resultado.getCodigoMuestra(),
-                resultado.getCodigoPatron(),
-                resultado.getFecha(),
-                resultado.getHora(),
-                resultado.getResultado()
+                    resultado.getNumero(),
+                    resultado.getCodigoMuestra(),
+                    resultado.getCodigoPatron(),
+                    resultado.getFecha(),
+                    resultado.getHora(),
+                    resultado.getResultado()
             });
         }
     }
 
     private void verResultado() {
 
-        int fila = tabla.getSelectedRow();
+        int fila =
+                tabla.getSelectedRow();
 
         if (fila == -1) {
 
@@ -104,41 +191,57 @@ public class PanelResultados extends JPanel {
         try {
 
             String nombreArchivo =
-                    "Resultado_" +
-                            resultado.getNumero() +
-                            ".html";
+                    "Resultado_"
+                            + resultado.getNumero()
+                            + ".html";
 
             PrintWriter writer =
-                    new PrintWriter(nombreArchivo);
+                    new PrintWriter(
+                            nombreArchivo
+                    );
 
             writer.println("<html>");
             writer.println("<body>");
 
-            writer.println("<h1>Resultado del Análisis</h1>");
+            writer.println(
+                    "<h1>Resultado del Análisis</h1>"
+            );
 
-            writer.println("<p><b>No:</b> "
-                    + resultado.getNumero()
-                    + "</p>");
+            writer.println(
+                    "<p><b>No:</b> "
+                            + resultado.getNumero()
+                            + "</p>"
+            );
 
-            writer.println("<p><b>Muestra:</b> "
-                    + resultado.getCodigoMuestra()
-                    + "</p>");
+            writer.println(
+                    "<p><b>Muestra:</b> "
+                            + resultado.getCodigoMuestra()
+                            + "</p>"
+            );
 
-            writer.println("<p><b>Patrón:</b> "
-                    + resultado.getCodigoPatron()
-                    + "</p>");
+            writer.println(
+                    "<p><b>Patrón:</b> "
+                            + resultado.getCodigoPatron()
+                            + "</p>"
+            );
 
-            writer.println("<p><b>Fecha:</b> "
-                    + resultado.getFecha()
-                    + "</p>");
+            writer.println(
+                    "<p><b>Fecha:</b> "
+                            + resultado.getFecha()
+                            + "</p>"
+            );
 
-            writer.println("<p><b>Hora:</b> "
-                    + resultado.getHora()
-                    + "</p>");
+            writer.println(
+                    "<p><b>Hora:</b> "
+                            + resultado.getHora()
+                            + "</p>"
+            );
 
-            writer.println("<p><b>Resultado:</b> "
-                    + resultado.getResultado()
-                    + "</p>");
+            writer.println(
+                    "<p><b>Resultado:</b> "
+                            + resultado.getResultado()
+                            + "</p>"
+            );
 
             writer.println("</body>");
             writer.println("</html>");
@@ -157,7 +260,7 @@ public class PanelResultados extends JPanel {
             );
         }
     }
-    
+
     public void actualizar() {
 
         cargarResultados();
