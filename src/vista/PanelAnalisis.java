@@ -460,7 +460,7 @@ public class PanelAnalisis extends JPanel {
             } else {
 
                 lblResultado.setText(
-                        "La muestra NO coincide con "
+                        "La muestra no coincide con "
                                 + patronSeleccionado.getNombre()
                 );
                 
