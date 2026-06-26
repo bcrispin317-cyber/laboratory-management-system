@@ -17,6 +17,7 @@ public class PanelResultados extends JPanel {
     private DefaultTableModel modelo;
 
     private JButton btnVer;
+    private JButton btnVerTodos;
     private JButton btnActualizar;
 
     private LaboratorioControlador controlador;
@@ -87,11 +88,9 @@ public class PanelResultados extends JPanel {
 
         add(scroll, BorderLayout.CENTER);
 
-        btnVer =
-                new JButton("Ver Resultado");
-
-        btnActualizar =
-                new JButton("Actualizar");
+        btnVer =new JButton("Ver Resultado");
+        btnActualizar =new JButton("Actualizar");
+        btnVerTodos = new JButton("Ver Todos");
 
         Font fuenteBoton =
                 new Font("Segoe UI",
@@ -129,6 +128,7 @@ public class PanelResultados extends JPanel {
         );
 
         panelBotones.add(btnVer);
+        panelBotones.add(btnVerTodos);
         panelBotones.add(btnActualizar);
 
         add(panelBotones,
@@ -145,6 +145,11 @@ public class PanelResultados extends JPanel {
 
             verResultado();
         });
+        
+        btnVerTodos.addActionListener(e -> {
+            verTodosResultados();
+        });
+        
     }
 
     private void cargarResultados() {
@@ -267,6 +272,82 @@ public class PanelResultados extends JPanel {
             );
         }
     }
+    
+    
+    private void verTodosResultados() {
+
+        try {
+
+            String nombreArchivo =
+                    "Resultados.html";
+
+            PrintWriter writer =
+                    new PrintWriter(nombreArchivo);
+
+            writer.println("<html>");
+            writer.println("<head>");
+            writer.println("<style>");
+            writer.println("body{font-family:Segoe UI;background:#f4f6f9;padding:30px;}");
+            writer.println(".card{background:white;padding:25px;border-radius:15px;width:900px;margin:auto;box-shadow:0px 0px 10px gray;}");
+            writer.println("h1{text-align:center;color:#2c3e50;}");
+            writer.println("table{width:100%;border-collapse:collapse;margin-top:20px;}");
+            writer.println("th,td{border:1px solid #ccc;padding:12px;text-align:center;}");
+            writer.println("th{background:#3498db;color:white;}");
+            writer.println("</style>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("<div class='card'>");
+
+            writer.println("<h1>Resultados del Sistema</h1>");
+
+            writer.println("<table>");
+
+            writer.println(
+                    "<tr>"
+                            + "<th>No.</th>"
+                            + "<th>Muestra</th>"
+                            + "<th>Patrón</th>"
+                            + "<th>Fecha</th>"
+                            + "<th>Hora</th>"
+                            + "<th>Resultado</th>"
+                            + "</tr>"
+            );
+
+            for (Resultado resultado :
+                    controlador.getSistema().getResultados()) {
+
+                writer.println(
+                        "<tr>"
+                                + "<td>" + resultado.getNumero() + "</td>"
+                                + "<td>" + resultado.getCodigoMuestra() + "</td>"
+                                + "<td>" + resultado.getCodigoPatron() + "</td>"
+                                + "<td>" + resultado.getFecha() + "</td>"
+                                + "<td>" + resultado.getHora() + "</td>"
+                                + "<td>" + resultado.getResultado() + "</td>"
+                                + "</tr>"
+                );
+            }
+
+            writer.println("</table>");
+            writer.println("</div>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            writer.close();
+
+            Desktop.getDesktop().open(
+                    new File(nombreArchivo)
+            );
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al generar el reporte."
+            );
+        }
+    }
+    
 
     public void actualizar() {
 

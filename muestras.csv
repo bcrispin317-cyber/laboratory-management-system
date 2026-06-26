@@ -1,6 +1,21 @@
 codigo,descripcion,patron,estado
-MUE001,Muestra de sangre - Paciente A,1;0;1;0;1;0;1;0;1,Ingreso
-MUE002,Muestra de saliva - Paciente B,0;1;0;1;0;1;0;1;0,Ingreso
-MUE003,Muestra de plasma - Paciente C,1;1;1;1;0;1;1;1;1,Ingreso
-MUE004,Muestra de tejido - Paciente D,0;0;1;1;1;0;1;0;1,Ingreso
-MUE005,Muestra de suero - Paciente E,1;0;0;0;1;1;1;1;0,Ingreso
+MUE001,Muestra de sangre A,1;0;1;0;1;0;1;0;1,Ingreso
+MUE002,Muestra de sangre B,0;1;0;1;0;1;0;1;0,Ingreso
+MUE003,Muestra de sangre C,1;1;1;1;0;1;1;1;1,Ingreso
+MUE004,Muestra de saliva A,0;0;1;1;1;0;1;0;1,Ingreso
+MUE005,Muestra de saliva B,1;1;0;0;1;1;1;0;0,Ingreso
+MUE006,Muestra de saliva C,0;0;1;0;1;0;1;1;1,Ingreso
+MUE007,Muestra de plasma A,1;0;0;1;1;0;0;1;1,Ingreso
+MUE008,Muestra de plasma B,0;1;1;0;1;0;1;0;1,Ingreso
+MUE009,Muestra de plasma C,1;0;1;0;1;0;1;0;1,Ingreso
+MUE010,Muestra de tejido A,0;1;0;1;0;1;0;1;0,Ingreso
+MUE011,Muestra de tejido B,1;1;1;1;0;1;1;1;1,Ingreso
+MUE012,Muestra de tejido C,0;0;1;1;1;0;1;0;1,Ingreso
+MUE013,Muestra de suero A,1;1;0;0;1;1;1;0;0,Ingreso
+MUE014,Muestra de suero B,0;0;1;0;1;0;1;1;1,Ingreso
+MUE015,Muestra de suero C,1;0;0;1;1;0;0;1;1,Ingreso
+MUE016,Muestra especial A,0;1;1;0;1;0;1;0;1,Ingreso
+MUE017,Muestra especial B,1;0;1;0;1;0;1;0;1,Ingreso
+MUE018,Muestra especial C,0;1;0;1;0;1;0;1;0,Ingreso
+MUE019,Muestra experimental A,1;1;1;1;0;1;1;1;1,Ingreso
+MUE020,Muestra experimental B,0;0;1;1;1;0;1;0;1,Ingreso

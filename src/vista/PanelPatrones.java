@@ -23,6 +23,7 @@ public class PanelPatrones extends JPanel {
     private JButton btnCrear;
     private JButton btnCargar;
     private JButton btnVer;
+    private JButton btnVerTodos;
     private JButton btnEliminar;
 
     private LaboratorioControlador controlador;
@@ -80,11 +81,12 @@ public class PanelPatrones extends JPanel {
                 .setPreferredWidth(90);
 
         JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 1, 10, 10));
+        panelBotones.setLayout(new GridLayout(5, 1, 10, 10));
 
         btnCrear = new JButton("Crear");
         btnCargar = new JButton("Cargar");
         btnVer = new JButton("Ver");
+        btnVerTodos = new JButton("Ver Todos");
         btnEliminar = new JButton("Eliminar");
         
         Font fuenteBoton =
@@ -120,6 +122,7 @@ public class PanelPatrones extends JPanel {
         panelBotones.add(btnCrear);
         panelBotones.add(btnCargar);
         panelBotones.add(btnVer);
+        panelBotones.add(btnVerTodos);
         panelBotones.add(btnEliminar);
 
         add(scroll, BorderLayout.CENTER);
@@ -248,6 +251,11 @@ public class PanelPatrones extends JPanel {
                 }
             }
         });
+        
+        btnVerTodos.addActionListener(e -> {
+            verTodosPatrones();
+        });
+        
     }
     
     
@@ -368,6 +376,148 @@ public class PanelPatrones extends JPanel {
 
         return matriz;
     }
+    
+    private void verTodosPatrones() {
+
+        try {
+
+            String nombreArchivo =
+                    "Patrones.html";
+
+            PrintWriter writer =
+                    new PrintWriter(nombreArchivo);
+
+            writer.println("<html>");
+            writer.println("<head>");
+            writer.println("<title>Patrones del Sistema</title>");
+
+            writer.println("<style>");
+            writer.println(
+                    "body{font-family:Segoe UI;"
+                    + "background:#f4f6f9;"
+                    + "padding:30px;}"
+            );
+
+            writer.println(
+                    ".card{background:white;"
+                    + "padding:25px;"
+                    + "border-radius:15px;"
+                    + "width:1000px;"
+                    + "margin:auto;"
+                    + "box-shadow:0px 0px 10px gray;}"
+            );
+
+            writer.println(
+                    "h1{text-align:center;"
+                    + "color:#3498db;}"
+            );
+
+            writer.println(
+                    "table{width:100%;"
+                    + "border-collapse:collapse;"
+                    + "margin-top:20px;}"
+            );
+
+            writer.println(
+                    "th,td{border:1px solid #ccc;"
+                    + "padding:12px;"
+                    + "text-align:center;}"
+            );
+
+            writer.println(
+                    "th{background:#3498db;"
+                    + "color:white;}"
+            );
+
+            writer.println("</style>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("<div class='card'>");
+
+            writer.println("<h1>Patrones del Sistema</h1>");
+
+            writer.println("<table>");
+
+            writer.println(
+                    "<tr>"
+                            + "<th>Código</th>"
+                            + "<th>Nombre</th>"
+                            + "<th>Matriz</th>"
+                            + "</tr>"
+            );
+
+            for (Patron patron :
+                    controlador.getSistema().getPatrones()) {
+
+                writer.println("<tr>");
+
+                writer.println(
+                        "<td>"
+                                + patron.getCodigo()
+                                + "</td>"
+                );
+
+                writer.println(
+                        "<td>"
+                                + patron.getNombre()
+                                + "</td>"
+                );
+
+                String matriz = "<table>";
+
+                int[][] datos =
+                        patron.getPatron();
+
+                for (int i = 0;
+                        i < datos.length;
+                        i++) {
+
+                    matriz += "<tr>";
+
+                    for (int j = 0;
+                            j < datos[i].length;
+                            j++) {
+
+                        matriz +=
+                                "<td>"
+                                + datos[i][j]
+                                + "</td>";
+                    }
+
+                    matriz += "</tr>";
+                }
+
+                matriz += "</table>";
+
+                writer.println(
+                        "<td>"
+                                + matriz
+                                + "</td>"
+                );
+
+                writer.println("</tr>");
+            }
+
+            writer.println("</table>");
+            writer.println("</div>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            writer.close();
+
+            Desktop.getDesktop().open(
+                    new File(nombreArchivo)
+            );
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error al generar HTML"
+            );
+        }
+    }
+    
     
     public void actualizar() {
 
