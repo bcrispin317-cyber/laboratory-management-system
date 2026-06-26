@@ -163,7 +163,7 @@ public class PanelAsignacion extends JPanel {
                         codigoInvestigador
                 );
 
-                muestra.setEstado("En Proceso");
+                muestra.setEstado("En proceso");
 
                 break;
             }
