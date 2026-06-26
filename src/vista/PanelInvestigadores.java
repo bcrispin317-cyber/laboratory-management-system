@@ -84,7 +84,7 @@ public class PanelInvestigadores extends JPanel {
         btnCrear = new JButton("Crear");
         btnCargar = new JButton("Cargar");
         btnActualizar = new JButton("Actualizar");
-        btnEliminar = new JButton("Eliminar");
+        btnEliminar = new JButton("Borrar");
 
         btnCrear.setFont(fuenteBoton);
         btnCargar.setFont(fuenteBoton);
