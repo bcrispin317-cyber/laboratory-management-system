@@ -35,7 +35,7 @@ public class EliminarInvestigador extends JFrame {
         btnBuscar = new JButton("Buscar");
         add(btnBuscar);
 
-        btnEliminar = new JButton("Borrar");
+        btnEliminar = new JButton("Eliminar");
         add(btnEliminar);
 
         btnBuscar.addActionListener(e -> buscar());
