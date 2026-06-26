@@ -8,14 +8,17 @@ public class LaboratorioControlador {
     private final SistemaLaboratorio sistema;
 
     public LaboratorioControlador() {
+
         sistema = Serializador.cargar();
     }
 
     public SistemaLaboratorio getSistema() {
+
         return sistema;
     }
 
     public void guardarDatos() {
+
         Serializador.guardar(sistema);
     }
 }

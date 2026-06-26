@@ -1,4 +1,5 @@
 codigo,nombre,patron
-PQ-01,Gripe,0;0;1;1
-PQ-02,Covid,1;1;0;0
-PQ-03,Dengue,1;0;0;1
+PAT01,COVID,1;0;1;0;1;0;1;0;1
+PAT02,INFLUENZA,0;1;0;1;0;1;0;1;0
+PAT03,DENGUE,1;1;1;1;0;1;1;1;1
+PAT04,ZIKA,0;0;1;1;1;0;1;0;1

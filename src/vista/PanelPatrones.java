@@ -282,8 +282,18 @@ public class PanelPatrones extends JPanel {
             writer.println("<html>");
             writer.println("<head>");
             writer.println("<title>" + patron.getNombre() + "</title>");
+            writer.println("<style>");
+            writer.println("body{font-family:Segoe UI;background:#f4f6f9;padding:30px;}");
+            writer.println(".card{background:white;padding:25px;border-radius:15px;width:500px;margin:auto;box-shadow:0px 0px 10px gray;}");
+            writer.println("h1{color:#3498db;}");
+            writer.println("table{border-collapse:collapse;margin-top:20px;}");
+            writer.println("td{border:1px solid #ccc;padding:10px;text-align:center;}");
+            writer.println("</style>");
             writer.println("</head>");
             writer.println("<body>");
+            writer.println("<div class='card'>");
+            writer.println("</body>");
+            writer.println("</html>");
 
             writer.println("<h1>Patrón: "
                     + patron.getNombre()

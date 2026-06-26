@@ -1,0 +1,6 @@
+codigo,descripcion,patron,estado
+MUE001,Muestra de sangre - Paciente A,1;0;1;0;1;0;1;0;1,Ingreso
+MUE002,Muestra de saliva - Paciente B,0;1;0;1;0;1;0;1;0,Ingreso
+MUE003,Muestra de plasma - Paciente C,1;1;1;1;0;1;1;1;1,Ingreso
+MUE004,Muestra de tejido - Paciente D,0;0;1;1;1;0;1;0;1,Ingreso
+MUE005,Muestra de suero - Paciente E,1;0;0;0;1;1;1;1;0,Ingreso

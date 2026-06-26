@@ -516,19 +516,9 @@ public class PanelAnalisis extends JPanel {
 
             if (comboMuestras.getItemCount() == 0) {
 
-                lblResultado.setText(
-                        "No hay muestras pendientes."
-                );
-
                 btnAnalizar.setEnabled(false);
 
             } else {
-
-                lblResultado.setText("Pendiente");
-                
-                lblResultado.setForeground(
-                        Color.DARK_GRAY
-                );
 
                 btnAnalizar.setEnabled(true);
             }

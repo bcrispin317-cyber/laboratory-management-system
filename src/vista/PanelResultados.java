@@ -201,11 +201,18 @@ public class PanelResultados extends JPanel {
                     );
 
             writer.println("<html>");
+            writer.println("<head>");
+            writer.println("<style>");
+            writer.println("body{font-family:Segoe UI;background:#f4f6f9;padding:30px;}");
+            writer.println(".card{background:white;padding:25px;border-radius:15px;width:600px;margin:auto;box-shadow:0px 0px 10px gray;}");
+            writer.println("h1{color:#2c3e50;}");
+            writer.println("p{font-size:18px;}");
+            writer.println("</style>");
+            writer.println("</head>");
             writer.println("<body>");
-
-            writer.println(
-                    "<h1>Resultado del Análisis</h1>"
-            );
+            writer.println("<div class='card'>");
+            writer.println("</body>");
+            writer.println("</html>");
 
             writer.println(
                     "<p><b>No:</b> "

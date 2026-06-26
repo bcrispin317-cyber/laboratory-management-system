@@ -13,6 +13,9 @@ import java.awt.Desktop;
 
 import javax.swing.table.DefaultTableCellRenderer;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class PanelMuestras extends JPanel {
 
     private JTable tabla;
@@ -183,7 +186,84 @@ public class PanelMuestras extends JPanel {
         });
 
         btnCargar.addActionListener(e -> {
-            cargarTabla();
+
+            JFileChooser selector = new JFileChooser();
+
+            int opcion = selector.showOpenDialog(null);
+
+            if (opcion == JFileChooser.APPROVE_OPTION) {
+
+                try {
+
+                    File archivo = selector.getSelectedFile();
+
+                    BufferedReader lector =
+                            new BufferedReader(
+                                    new FileReader(archivo)
+                            );
+
+                    String linea;
+
+                    lector.readLine();
+
+                    while ((linea = lector.readLine()) != null) {
+
+                        String[] datos = linea.split(",");
+
+                        String codigo = datos[0].trim();
+                        String descripcion = datos[1].trim();
+                        String patronTexto = datos[2].trim();
+                        String estado = datos[3].trim();
+
+                        boolean existe = false;
+
+                        for (Muestra m :
+                                controlador.getSistema().getMuestras()) {
+
+                            if (m.getCodigo().equals(codigo)) {
+                                existe = true;
+                                break;
+                            }
+                        }
+
+                        if (existe) {
+                            continue;
+                        }
+
+                        int[][] patron =
+                                convertirPatron(patronTexto);
+
+                        Muestra muestra =
+                                new Muestra(
+                                        codigo,
+                                        descripcion,
+                                        patron,
+                                        estado
+                                );
+
+                        controlador.getSistema()
+                                .getMuestras()
+                                .add(muestra);
+                    }
+                    lector.close();
+
+                    controlador.guardarDatos();
+
+                    cargarTabla();
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Muestras cargadas correctamente"
+                    );
+
+                } catch (Exception ex) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Error al cargar CSV"
+                    );
+                }
+            }
         });
         
         btnActualizar.addActionListener(e -> {
@@ -314,6 +394,36 @@ public class PanelMuestras extends JPanel {
             );
         }
     }
+    
+    private int[][] convertirPatron(String texto) {
+
+        String[] valores = texto.split(";");
+
+        int tamanio =
+                (int) Math.sqrt(valores.length);
+
+        int[][] matriz =
+                new int[tamanio][tamanio];
+
+        int indice = 0;
+
+        for (int i = 0; i < tamanio; i++) {
+
+            for (int j = 0; j < tamanio; j++) {
+
+                matriz[i][j] =
+                        Integer.parseInt(
+                                valores[indice]
+                        );
+
+                indice++;
+            }
+        }
+
+        return matriz;
+    }
+    
+    
     
     public void actualizar() {
 

@@ -1,0 +1,6 @@
+codigo,descripcion,estado,investigador
+MUE001,Muestra de sangre - Paciente A,Ingreso,
+MUE002,Muestra de saliva - Paciente B,Ingreso,
+MUE003,Muestra de plasma - Paciente C,Ingreso,
+MUE004,Muestra de tejido - Paciente D,Ingreso,
+MUE005,Muestra de suero - Paciente E,Ingreso,
