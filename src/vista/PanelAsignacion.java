@@ -148,7 +148,7 @@ public class PanelAsignacion extends JPanel {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Debe seleccionar investigador y muestra."
+                    "Debe seleccionar un investigador y una muestra."
             );
 
             return;
