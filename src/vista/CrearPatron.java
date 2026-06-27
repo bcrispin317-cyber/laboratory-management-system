@@ -6,6 +6,9 @@ import modelo.Patron;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 public class CrearPatron extends JFrame {
 
@@ -56,21 +59,84 @@ public class CrearPatron extends JFrame {
 
     private void cargarPatron() {
 
-        JFileChooser selector = new JFileChooser();
+        JFileChooser selector =
+                new JFileChooser();
 
-        int opcion = selector.showOpenDialog(this);
+        int opcion =
+                selector.showOpenDialog(this);
 
-        if (opcion == JFileChooser.APPROVE_OPTION) {
+        if (opcion ==
+                JFileChooser.APPROVE_OPTION) {
 
-            File archivo = selector.getSelectedFile();
+            File archivo =
+                    selector.getSelectedFile();
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Archivo seleccionado:\n" + archivo.getName()
-            );
+            try {
 
-            // Aquí luego puedes cargar la matriz real
-            matrizPatron = new int[1][1];
+                BufferedReader br =
+                        new BufferedReader(
+                                new FileReader(archivo)
+                        );
+
+                ArrayList<int[]> filas =
+                        new ArrayList<>();
+
+                String linea;
+
+                while ((linea =
+                        br.readLine()) != null) {
+
+                    linea = linea.trim();
+
+                    if (linea.isEmpty()) {
+                        continue;
+                    }
+
+                    String[] datos =
+                            linea.split(",");
+
+                    int[] fila =
+                            new int[datos.length];
+
+                    for (int i = 0;
+                            i < datos.length;
+                            i++) {
+
+                        fila[i] =
+                                Integer.parseInt(
+                                        datos[i].trim()
+                                );
+                    }
+
+                    filas.add(fila);
+                }
+
+                br.close();
+
+                matrizPatron =
+                        new int[filas.size()]
+                                [filas.get(0).length];
+
+                for (int i = 0;
+                        i < filas.size();
+                        i++) {
+
+                    matrizPatron[i] =
+                            filas.get(i);
+                }
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Patrón cargado correctamente."
+                );
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Error al leer el archivo."
+                );
+            }
         }
     }
 

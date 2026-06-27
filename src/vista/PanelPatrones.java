@@ -132,9 +132,19 @@ public class PanelPatrones extends JPanel {
 
         btnCrear.addActionListener(e -> {
 
-            new CrearPatron();
+            CrearPatron ventana =
+                    new CrearPatron();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
 
         btnCargar.addActionListener(e -> {
@@ -219,11 +229,20 @@ public class PanelPatrones extends JPanel {
 
         btnEliminar.addActionListener(e -> {
 
-            new EliminarPatron();
+            EliminarPatron ventana =
+                    new EliminarPatron();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
-        
         btnVer.addActionListener(e -> {
 
             int fila = tabla.getSelectedRow();
@@ -352,10 +371,42 @@ public class PanelPatrones extends JPanel {
     
     private int[][] convertirPatron(String texto) {
 
-        String[] valores = texto.split(";");
+        texto = texto.trim();
+
+        if (texto.contains("\n")) {
+
+            String[] filas =
+                    texto.split("\n");
+
+            int[][] matriz =
+                    new int[filas.length][filas.length];
+
+            for (int i = 0; i < filas.length; i++) {
+
+                String[] numeros =
+                        filas[i].trim().split(",");
+
+                for (int j = 0;
+                        j < numeros.length;
+                        j++) {
+
+                    matriz[i][j] =
+                            Integer.parseInt(
+                                    numeros[j].trim()
+                            );
+                }
+            }
+
+            return matriz;
+        }
+
+        String[] valores =
+                texto.split(";");
 
         int tamanio =
-                (int) Math.sqrt(valores.length);
+                (int) Math.sqrt(
+                        valores.length
+                );
 
         int[][] matriz =
                 new int[tamanio][tamanio];
@@ -368,7 +419,8 @@ public class PanelPatrones extends JPanel {
 
                 matriz[i][j] =
                         Integer.parseInt(
-                                valores[indice]);
+                                valores[indice].trim()
+                        );
 
                 indice++;
             }

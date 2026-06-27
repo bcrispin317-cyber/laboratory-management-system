@@ -180,9 +180,19 @@ public class PanelMuestras extends JPanel {
 
         btnCrear.addActionListener(e -> {
 
-            new CrearMuestra();
+            CrearMuestra ventana =
+                    new CrearMuestra();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
 
         btnCargar.addActionListener(e -> {
@@ -213,7 +223,11 @@ public class PanelMuestras extends JPanel {
                         String codigo = datos[0].trim();
                         String descripcion = datos[1].trim();
                         String patronTexto = datos[2].trim();
-                        String estado = datos[3].trim();
+                        String estado = "Ingreso";
+
+                        if (datos.length > 3) {
+                            estado = datos[3].trim();
+                        }
 
                         boolean existe = false;
 
@@ -275,9 +289,19 @@ public class PanelMuestras extends JPanel {
         
         btnEliminar.addActionListener(e -> {
 
-            new EliminarMuestra();
+            EliminarMuestra ventana =
+                    new EliminarMuestra();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
         
         btnVer.addActionListener(e -> {
@@ -339,9 +363,62 @@ public class PanelMuestras extends JPanel {
                     new PrintWriter(nombreArchivo);
 
             writer.println("<html>");
+            
+            writer.println("<head>");
+
+            writer.println("<style>");
+
+            writer.println(
+                    "body{"
+                            + "font-family:Segoe UI;"
+                            + "background:#f4f6f9;"
+                            + "padding:30px;"
+                            + "}"
+            );
+
+            writer.println(
+                    ".card{"
+                            + "background:white;"
+                            + "padding:30px;"
+                            + "width:700px;"
+                            + "margin:auto;"
+                            + "border-radius:20px;"
+                            + "box-shadow:0px 0px 10px gray;"
+                            + "}"
+            );
+
+            writer.println(
+                    "h1{"
+                            + "color:#3498db;"
+                            + "}"
+            );
+
+            writer.println(
+                    "table{"
+                            + "border-collapse:collapse;"
+                            + "margin-top:20px;"
+                            + "}"
+            );
+
+            writer.println(
+                    "td{"
+                            + "border:1px solid #ccc;"
+                            + "padding:12px;"
+                            + "text-align:center;"
+                            + "}"
+            );
+
+            writer.println("</style>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("<div class='card'>");
+            
+            
             writer.println("<body>");
 
-            writer.println("<h1>Muestra</h1>");
+            writer.println(
+                    "<h1>Muestra</h1>"
+            );
 
             writer.println("<h2>Código: "
                     + muestra.getCodigo()
@@ -378,6 +455,7 @@ public class PanelMuestras extends JPanel {
             writer.println("</table>");
 
             writer.println("</body>");
+            writer.println("</div>");
             writer.println("</html>");
 
             writer.close();
@@ -397,10 +475,42 @@ public class PanelMuestras extends JPanel {
     
     private int[][] convertirPatron(String texto) {
 
-        String[] valores = texto.split(";");
+        texto = texto.trim();
+
+        if (texto.contains("\n")) {
+
+            String[] filas =
+                    texto.split("\n");
+
+            int[][] matriz =
+                    new int[filas.length][filas.length];
+
+            for (int i = 0; i < filas.length; i++) {
+
+                String[] numeros =
+                        filas[i].trim().split(",");
+
+                for (int j = 0;
+                        j < numeros.length;
+                        j++) {
+
+                    matriz[i][j] =
+                            Integer.parseInt(
+                                    numeros[j].trim()
+                            );
+                }
+            }
+
+            return matriz;
+        }
+
+        String[] valores =
+                texto.split(";");
 
         int tamanio =
-                (int) Math.sqrt(valores.length);
+                (int) Math.sqrt(
+                        valores.length
+                );
 
         int[][] matriz =
                 new int[tamanio][tamanio];
@@ -413,7 +523,7 @@ public class PanelMuestras extends JPanel {
 
                 matriz[i][j] =
                         Integer.parseInt(
-                                valores[indice]
+                                valores[indice].trim()
                         );
 
                 indice++;

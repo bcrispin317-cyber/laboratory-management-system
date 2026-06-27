@@ -124,11 +124,20 @@ public class PanelInvestigadores extends JPanel {
 
         btnCrear.addActionListener((ActionEvent e) -> {
 
-            new CrearInvestigador();
+            CrearInvestigador ventana =
+                    new CrearInvestigador();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
-
         btnCargar.addActionListener((ActionEvent e) -> {
 
             JFileChooser selector = new JFileChooser();
@@ -201,16 +210,36 @@ public class PanelInvestigadores extends JPanel {
 
         btnActualizar.addActionListener((ActionEvent e) -> {
 
-            new ActualizarInvestigador();
+            ActualizarInvestigador ventana =
+                    new ActualizarInvestigador();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
 
-        btnEliminar.addActionListener((ActionEvent e) -> {
+        btnEliminar.addActionListener(e -> {
 
-            new EliminarInvestigador();
+            EliminarInvestigador ventana =
+                    new EliminarInvestigador();
 
-            cargarTabla();
+            ventana.addWindowListener(
+                    new java.awt.event.WindowAdapter() {
+
+                @Override
+                public void windowClosed(
+                        java.awt.event.WindowEvent e) {
+
+                    cargarTabla();
+                }
+            });
         });
     }
 
