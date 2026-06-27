@@ -129,7 +129,7 @@ public class PanelMuestras extends JPanel {
 
         btnCrear = new JButton("Crear");
         btnCargar = new JButton("Cargar");
-        btnVer = new JButton("Ver");
+        btnVer = new JButton("Visualizar");
         btnActualizar = new JButton("Modificar");
         btnEliminar = new JButton("Eliminar");
         
