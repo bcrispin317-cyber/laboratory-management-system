@@ -133,7 +133,7 @@ public class PanelMuestras extends JPanel {
         btnCrear = new JButton("Crear");
         btnCargar = new JButton("Cargar");
         btnVer = new JButton("Ver");
-        btnActualizar = new JButton("Actualizar");
+        btnActualizar = new JButton("Modificar");
         btnEliminar = new JButton("Eliminar");
         
         Font fuenteBoton =
