@@ -1,145 +1,172 @@
-# IPC Quimik - Sistema de Gestión de Laboratorio
+# IPC Quimik - Laboratory Management System
 
-## Datos Generales
+## Overview
 
-**Universidad de San Carlos de Guatemala**
-**Facultad de Ingeniería**
-**Escuela de Ciencias y Sistemas**
-**Curso:** Introducción a la Programación y Computación 1
-**Laboratorio:** Introducción a la Programación y Computación 1
-**Proyecto:** Proyecto 2
-**Grupo:** 10
+IPC Quimik is a laboratory management system developed in Java and Java Swing. The application allows researchers and administrators to manage samples, patterns, and analysis results through matrix operations.
 
-### Integrantes
-
-* Byron Alexander Crispín Guzmán - 202300951
-* Heraldo David Escobar Rosales - 202211057
+The project follows the Model-View-Controller (MVC) architecture and implements data persistence, CSV processing, HTML report generation, and concurrent execution using threads.
 
 ---
 
-## Descripción del Proyecto
+##  Features
 
-IPC Quimik es un sistema de gestión de laboratorio desarrollado en Java y Java Swing. El sistema permite administrar investigadores, muestras, patrones y resultados de análisis mediante el uso de operaciones con matrices.
-
-Además, implementa:
-
-* Interfaz gráfica con Java Swing.
-* Persistencia de datos mediante serialización de objetos.
-* Carga masiva de información mediante archivos CSV.
-* Generación de reportes HTML.
-* Concurrencia utilizando hilos para la simulación del análisis.
-
----
-
-## Explicación del Patrón MVC
-
-El proyecto se desarrolló siguiendo el patrón Modelo-Vista-Controlador (MVC) para mantener una adecuada organización del código.
-
-### Modelo (`modelo`)
-
-Contiene las clases que representan la información del sistema, tales como:
-
-* Investigador
-* Muestra
-* Patrón
-* Resultado
-* SistemaLaboratorio
-
-Estas clases almacenan los datos y atributos necesarios para el funcionamiento de la aplicación.
-
-### Vista (`vista`)
-
-Contiene todas las ventanas y paneles de la interfaz gráfica desarrollados con Java Swing, permitiendo la interacción del usuario con el sistema.
-
-Entre ellas se encuentran:
-
-* Login
-* VentanaAdministrador
-* VentanaInvestigador
-* PanelInvestigadores
-* PanelMuestras
-* PanelPatrones
-* PanelAnalisis
-* PanelResultados
-* PanelEstadisticas
-
-### Controlador (`controlador`)
-
-La clase `LaboratorioControlador` funciona como intermediario entre la vista y el modelo, gestionando la obtención y almacenamiento de la información del sistema.
-
-### Utilidades (`util`)
-
-Contiene clases de apoyo para el proyecto, entre ellas:
-
-* Serializador
-* Lectura de archivos CSV.
-
-Esta estructura permitió mantener una mejor organización, reutilización y mantenimiento del código.
+- Researcher management
+- Sample management
+- Pattern management
+- Matrix-based analysis processing
+- CSV bulk import
+- HTML report generation
+- Data persistence through serialization
+- Concurrent analysis simulation using threads
+- Desktop graphical interface with Java Swing
 
 ---
 
-# Fragmentos de Código Relevantes
+##  Technologies Used
 
-## Algoritmo de Procesamiento de Matrices
+- Java
+- Java Swing
+- Object-Oriented Programming (OOP)
+- Model-View-Controller (MVC)
+- CSV File Processing
+- Object Serialization
+- HTML
+- Git & GitHub
+
+---
+
+##  Project Architecture
+
+### Model (`modelo`)
+Contains the entities and business logic:
+
+- Investigador
+- Muestra
+- Patrón
+- Resultado
+- SistemaLaboratorio
+
+### View (`vista`)
+Contains the graphical user interface developed with Java Swing:
+
+- Login
+- VentanaAdministrador
+- VentanaInvestigador
+- PanelInvestigadores
+- PanelMuestras
+- PanelPatrones
+- PanelAnalisis
+- PanelResultados
+- PanelEstadisticas
+
+### Controller (`controlador`)
+Coordinates the interaction between the views and the model through:
+
+- LaboratorioControlador
+
+### Utilities (`util`)
+Helper classes used throughout the application:
+
+- Serializador
+- CSV Reader
+
+---
+
+##  Algorithms Implemented
+
+### Matrix Multiplication
 
 ```java
 for (int i = 0; i < n; i++) {
-
     for (int j = 0; j < n; j++) {
-
         for (int k = 0; k < n; k++) {
-
-            mt3[i][j] +=
-                    mt1[i][k] * mt2[k][j];
+            mt3[i][j] += mt1[i][k] * mt2[k][j];
         }
     }
 }
 ```
 
-Este algoritmo realiza la multiplicación de matrices necesaria para el análisis de las muestras del laboratorio. Posteriormente se genera la matriz resultante y se compara con el patrón seleccionado para determinar si existe coincidencia.
+Used to process sample matrices and compare them with selected patterns.
 
 ---
 
-## Persistencia de Datos mediante Serialización
+### Object Serialization
 
 ```java
 public static void guardar(SistemaLaboratorio sistema) {
-
     try {
-
         ObjectOutputStream salida =
-                new ObjectOutputStream(
-                        new FileOutputStream(ARCHIVO));
+            new ObjectOutputStream(
+                new FileOutputStream(ARCHIVO));
 
         salida.writeObject(sistema);
         salida.close();
 
     } catch (Exception e) {
-
         System.out.println("Error al guardar");
     }
 }
 ```
 
-Este método permite almacenar el estado completo del sistema en un archivo binario (`laboratorio.dat`). Gracias a la serialización de objetos, toda la información de investigadores, muestras, patrones y resultados se conserva entre ejecuciones del programa.
+Allows the complete system state to be persisted between executions.
 
 ---
 
-## Tecnologías Utilizadas
+##  Main Functionalities
 
-* Java
-* Java Swing
-* Programación Orientada a Objetos
-* Serialización de Objetos
-* Archivos CSV
-* HTML
-* Git
-* GitHub
+- User authentication.
+- Researcher administration.
+- Sample management.
+- Pattern management.
+- Matrix analysis.
+- Result generation.
+- Statistical reports.
+- Data persistence.
+- CSV import.
 
 ---
 
-## Repositorio
+## Documentation
 
-Repositorio oficial del proyecto:
+Detailed screenshots, user instructions, and examples of system usage can be found in the User Manual included in this repository.
 
-https://github.com/bcrispin317-cyber/IPC1V_Practica1_G10.git
+- `Manual de Usuario.pdf`
+
+---
+
+##  Getting Started
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/bcrispin317-cyber/ipc-quimik-laboratory-management.git
+```
+
+2. Open the project in Apache NetBeans.
+3. Build the project.
+4. Run the main application.
+
+---
+
+## Authors
+
+- Byron Alexander Crispín Guzmán
+- Heraldo David Escobar Rosales
+
+---
+
+## Collaboration
+
+This project was developed collaboratively using Git and GitHub. Multiple commits were made throughout development to implement features, fix bugs, and improve the system.
+
+---
+
+## Academic Context
+
+This project was originally developed as an academic project for the School of Computer Science and Systems Engineering at the Universidad de San Carlos de Guatemala and is maintained as part of our software development portfolio.
+
+---
+
+## License
+
+This project is intended for educational and portfolio purposes.
